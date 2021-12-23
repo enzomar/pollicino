@@ -1,0 +1,28 @@
+sensors:
+    - id: 0
+      type: moisture
+      gpio:
+        pin: 10
+        mode: BMD
+    - id: 1
+      type: photoresistor
+      gpio:
+        pin: 10
+        mode: BMD
+sensors_polling_seconds: 1
+servos:
+  - id: 0
+    type: waterpump
+    gpio:
+      pin: 10
+      mode: BMD
+    off_after_min: 60
+
+controllers:
+  - type: watering
+    sensor_type: moisture
+    sensor_id: 0 
+    servo_type: waterpump
+    servo_id: 0
+    threshold: 5
+
