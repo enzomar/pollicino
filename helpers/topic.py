@@ -1,5 +1,8 @@
 PATTERN='{0}/{1}/{2}'
 
+def build_sensor(id,type,area='pollicino'):
+	return PATTERN.format(area,type,id)
+
 def build(id,type,area='pollicino'):
 	return PATTERN.format(area,type,id)
 

@@ -4,12 +4,16 @@ sensors:
       gpio:
         pin: 10
         mode: BMD
-    - id: 1
+      polling_seconds: 1
+    - id: 0
       type: photoresistor
       gpio:
         pin: 10
         mode: BMD
-sensors_polling_seconds: 1
+      polling_seconds: 1
+    - id: 0
+      type: meteo
+      polling_seconds: 7200
 servos:
   - id: 0
     type: waterpump

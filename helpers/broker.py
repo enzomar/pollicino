@@ -4,12 +4,10 @@ REGEX='^listener ([0-9]+) ([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)'
 import paho.mqtt.client as mqtt
 
 
-
 def connect():
 	client = mqtt.Client()
 	host, port = host_port()
-	print("Host: {0}".format(host))
-	print("Port: {0}".format(port))
+	print("Connecting to {0}:{1}".format(host, port))
 	client.connect(host,port,60)
 	return client
 

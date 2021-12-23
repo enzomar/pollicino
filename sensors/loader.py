@@ -1,5 +1,7 @@
 from sensors.moisture import Moisture
 from sensors.photoresistor import Photoresistor
+from sensors.meteo import Meteo
+
 from helpers import topic
 
 import yaml
@@ -8,7 +10,8 @@ import yaml
 DEFAULT_POLLING_SECONDS=1
 
 SENSORS_MAP={'moisture': Moisture, 
-			 'photoresistor':Photoresistor}
+			 'photoresistor':Photoresistor, 
+			 'meteo':Meteo}
 
 def load(configuration_file):
 	list_of_sensors = list()
@@ -16,14 +19,12 @@ def load(configuration_file):
 		try:
 			config = yaml.safe_load(stream)
 			for s in config['sensors']:
+				s_polling_seconds = s['polling_seconds'] or DEFAULT_POLLING_SECONDS
 				sensor_class = SENSORS_MAP[s['type'].lower()]
 				s_instance = sensor_class(s['id'])
+				s_instance.polling_seconds = s_polling_seconds
 				s_topic = topic.build(s_instance.id, s_instance.type, 'sensors')
 				list_of_sensors.append({'instance':s_instance, 'topic':s_topic})
-			try:
-				polling_seconds = config['sensors_polling_seconds']
-			except KeyError:
-				polling_seconds = DEFAULT_POLLING_SECONDS
 		except yaml.YAMLError as exc:
 			print(exc)
-	return list_of_sensors, polling_seconds
+	return list_of_sensors
