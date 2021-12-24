@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 nohup sh broker.sh </dev/null >/dev/null 2>&1  &
 source venv/bin/activate

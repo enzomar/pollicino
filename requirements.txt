@@ -1,3 +1,4 @@
+virtualenv
 paho-mqtt==1.6.1
-PyYAML==6.0
+PyYAML
 requests==2.26.0
