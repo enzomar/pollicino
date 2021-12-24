@@ -1,36 +1,35 @@
 from controller.watering import Watering 
 from helpers import topic
-import yaml
 import logging
-
+import yaml
 
 
 CTRL_MAP={'watering': Watering}
 
-"""
-  - type: watering
-    sensor: moisture/0
-    servo: waterpump/0
-    threshold: 5
-"""
 
 def load(configuration_file):
 	list_of_ctrls = list()
-
 	with open(configuration_file, "r") as stream:
 		try:
 			config = yaml.safe_load(stream)
-			for c in config['controllers']:
-				c_type = c['type'].lower()
-				ctrl_class = CTRL_MAP[c_type]
-				c_sensor_type = c['sensor_type']
-				c_sensor_id = c['sensor_id']
-				c_servo_type = c['servo_type']
-				c_servo_id = c['servo_id']
-				topic_sub = topic.build(c_sensor_id, c_sensor_type, 'sensors')
-				topic_pub = topic.build(c_servo_id, c_servo_type, 'servo')
-				c_instance = ctrl_class(topic_sub, topic_pub)
-				list_of_ctrls.append(c_instance)
+			for sector in config:
+				sector_config = config[sector]
+				ctrls_config = sector_config['controllers']
+				for ctrl in ctrls_config:
+					c_type = ctrl['type']
+					c_class = CTRL_MAP[c_type]
+					for each in ctrl['links']:
+						
+						servo_id = str(each['servo_id'])
+						servo_type = sector_config['servos'][servo_id]['type']
+						sensor_id = str(each['sensor_id'])
+						sensor_type = sector_config['sensors'][sensor_id]['type']
+
+						topic_sub = topic.status(sensor_id, sensor_type, 'sensors', sector)
+						topic_pub = topic.cmd_pub(servo_id, servo_type, 'servo', sector)
+						c_instance = c_class(topic_sub, topic_pub)
+						list_of_ctrls.append(c_instance)
 		except yaml.YAMLError as exc:
 			logging.info(exc)
 	return list_of_ctrls
+

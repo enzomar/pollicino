@@ -9,9 +9,10 @@ def on_connect(client, userdata, flags, rc):
 	logging.info("Connected with result code "+str(rc))
 	logging.info("Subscribing to: {0}".format(userdata['topic_sub']))
 	client.subscribe(userdata['topic_sub'])
+	logging.info("Done")
+
 
 def on_message(client, userdata, msg):
-	area, sensor_type, sensor_id = topic.extract(msg.topic)
 	value = float(msg.payload.decode())
 	topic_pub = userdata['topic_pub']
 	command = "off"

@@ -3,22 +3,28 @@ from helpers import topic
 import yaml
 import logging
 
-
 SERVO_MAP={'waterpump': Waterpump}
 
+def load_servos(s_id, s_config, sector):
+	s_type = s_config['type']
+	s_class = SERVO_MAP[s_type.lower()]
+	s_instance = s_class(s_id)
+	s_topic = topic.cmd_sub('servos', sector)
+	return s_instance, s_topic
+					
 def load(configuration_file):
 	servos_pool = dict()
 	with open(configuration_file, "r") as stream:
 		try:
 			config = yaml.safe_load(stream)
-			for s in config['servos']:
-				s_id = s['id']
-				s_type = s['type'].lower()
-				servo_class = SERVO_MAP[s_type]
-				s_instance = servo_class(s['id'])
-				if s_type not in servos_pool:
-					servos_pool[s_type]=dict()
-				servos_pool[s_type][s_id] = s_instance
+			for sector in config:
+				sector_config = config[sector]
+				servos_config = sector_config['servos']
+				for s_id in servos_config:
+					s_config = servos_config[s_id]
+					s_instance, s_topic = load_servos(s_id, s_config, sector)
+					servos_pool[s_id]={'instance':s_instance, 'topic':s_topic}
 		except yaml.YAMLError as exc:
 			logging.info(exc)
 	return servos_pool
+
