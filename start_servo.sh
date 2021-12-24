@@ -1,4 +1,4 @@
 #!/bin/bash
 
-source venv/activate/bin
+source venv/bin/activate
 nohup python pollicino.py -m servo </dev/null >/dev/null 2>&1 &

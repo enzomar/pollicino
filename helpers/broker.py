@@ -4,6 +4,26 @@ REGEX='^listener ([0-9]+) ([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)'
 import paho.mqtt.client as mqtt
 import logging
 
+
+def write(brokerhost):
+	content = "\
+allow_anonymous true \n\
+listener {0} {1}"
+	host_port = brokerhost.split(':')
+	host=host_port[0]
+	try:
+		port=host_port[1]
+	except:
+		pass
+
+	content = content.format(port, host).strip()
+	with open(MOSQUITTO_CONF, 'w') as conffile:
+		conffile.write(content)
+
+	logging.debug("Wrote {0}".format(content))
+
+
+
 def connect():
 	client = mqtt.Client()
 	host, port = host_port()
@@ -29,7 +49,7 @@ def host_port():
 			for each in conffile:
 				found_host_port = re.search(REGEX, each)
 				if found_host_port:
-					port = found_host_port.group(1)
+					port = int(found_host_port.group(1))
 					host = found_host_port.group(2)		
 	except FileNotFoundError:
 		logging.info("Filenotfound")
