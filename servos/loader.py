@@ -1,6 +1,8 @@
 from servos.waterpump import Waterpump
 from helpers import topic
 import yaml
+import logging
+
 
 SERVO_MAP={'waterpump': Waterpump}
 
@@ -18,5 +20,5 @@ def load(configuration_file):
 					servos_pool[s_type]=dict()
 				servos_pool[s_type][s_id] = s_instance
 		except yaml.YAMLError as exc:
-			print(exc)
+			logging.info(exc)
 	return servos_pool

@@ -1,6 +1,8 @@
 from controller.watering import Watering 
 from helpers import topic
 import yaml
+import logging
+
 
 
 CTRL_MAP={'watering': Watering}
@@ -30,5 +32,5 @@ def load(configuration_file):
 				c_instance = ctrl_class(topic_sub, topic_pub)
 				list_of_ctrls.append(c_instance)
 		except yaml.YAMLError as exc:
-			print(exc)
+			logging.info(exc)
 	return list_of_ctrls

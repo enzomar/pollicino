@@ -2,6 +2,8 @@ from controller import watering
 from controller import loader
 from multiprocessing import Pool
 import signal
+import logging
+
 
 def init_worker():
     signal.signal(signal.SIGINT, signal.SIG_IGN)
@@ -18,7 +20,7 @@ def run(configuration_file):
       pool.join()
 
   except KeyboardInterrupt:
-      print("Caught KeyboardInterrupt, terminating workers")
+      logging.info("Caught KeyboardInterrupt, terminating workers")
       pool.terminate()
       pool.join()
 

@@ -6,9 +6,12 @@ sys.path.append(parentdir)
 from controller import controller
 from sensors import sensors
 from servos import servos
-
-
 import argparse
+import logging
+
+logging.basicConfig(level=logging.INFO, 
+	format='%(asctime)s - %(process)d - %(processName)s - %(levelname)s - %(message)s')
+
 
 DEFAUL_CONGIF_FILE = "pollicino.yaml"
 
@@ -23,21 +26,21 @@ def parse_input():
 def run(mode, config):
 	if mode == "servos":
 		# subscribe for each topic and apply the relative action
-		print("Run Servos")
+		logging.info("Run Servos")
 		servos.run(config) 
 
 	if mode == "sensors":
 		# multi threads: polls sensor status and 
 		# publish the status via MQQT protocol to the MQTT broker 
 		# one topic per sensor type
-		print("Run Sensors")
+		logging.info("Run Sensors")
 		sensors.run(config)
 
 	if mode == "ctrl":
 		# multi threads: polls sensor status and 
 		# publish the status via MQQT protocol to the MQTT broker 
 		# one topic per sensor type
-		print("Run Controller")
+		logging.info("Run Controller")
 		controller.run(config)
 
 if __name__ == "__main__":

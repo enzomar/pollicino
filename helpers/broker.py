@@ -2,13 +2,17 @@ import re
 MOSQUITTO_CONF="broker/mosquitto.conf"
 REGEX='^listener ([0-9]+) ([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)'
 import paho.mqtt.client as mqtt
-
+import logging
 
 def connect():
 	client = mqtt.Client()
 	host, port = host_port()
-	print("Connecting to {0}:{1}".format(host, port))
-	client.connect(host,port,60)
+	logging.info("Connecting to {0}:{1}".format(host, port))
+	try:
+		client.connect(host,port,60)
+	except ConnectionRefusedError as ex:
+		logging.info(ex)
+		raise ex
 	return client
 
 def host_port():
@@ -28,7 +32,7 @@ def host_port():
 					port = found_host_port.group(1)
 					host = found_host_port.group(2)		
 	except FileNotFoundError:
-		print("Filenotfound")
+		logging.info("Filenotfound")
 
 	if not (host or port):
 		host = "localhost"
@@ -36,17 +40,7 @@ def host_port():
 
 	return host, port
 
-def host():
-	# read mosquitto configuration file
-	# and extract the ip:port
-	return host_port()[0]
-
-def port():
-	# read mosquitto configuration file
-	# and extract the ip:port
-	return int(host_port()[1])
-
 if __name__ == "__main__":
-	print(host_port())
-	#print(host())
-	#print(port())
+	logging.info(host_port())
+	#logging.info(host())
+	#logging.info(port())

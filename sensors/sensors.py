@@ -2,6 +2,7 @@ from helpers import broker
 from sensors import loader
 from multiprocessing import Pool, Process
 import signal, time
+import logging
 
 def read_and_publish(sensor):
 	client = broker.connect()
@@ -11,10 +12,11 @@ def read_and_publish(sensor):
 			measure = s_instance.fetch()
 			s_topic = sensor['topic']	
 			client.publish(s_topic, str(measure))
-			print("{0} -> {1}".format(s_topic , str(measure)))
+			logging.info("{0} -> {1}".format(s_topic , str(measure)))
+			#logging.info("Wait for {0} sec".format(int(s_instance.polling_seconds)))
 			time.sleep(int(s_instance.polling_seconds))
 	except Exception as ex:
-		print(ex)
+		logging.error(ex)
 		client.disconnect()
 		raise ex
 
@@ -32,7 +34,7 @@ def run(configuration_file):
 		pool.join()
 
 	except KeyboardInterrupt:
-	  print("Caught KeyboardInterrupt, terminating workers")
+	  logging.info("Caught KeyboardInterrupt, terminating workers")
 	  pool.terminate()
 	  pool.join()
 

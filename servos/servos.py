@@ -1,13 +1,14 @@
 from servos import loader
 from helpers import broker
 from helpers import topic
+import logging
 
 
 TOPIC = 'servos/#'
 
 def on_connect(client, userdata, flags, rc):
-  print("Connected with result code "+str(rc))
-  print("Subscribing to: {0}".format(TOPIC))
+  logging.debug("Connected with result code "+str(rc))
+  logging.info("Subscribing to: {0}".format(TOPIC))
   client.subscribe(TOPIC)
 
 def on_message(client, userdata, msg):

@@ -1,11 +1,13 @@
 import paho.mqtt.client as mqtt
 from helpers import broker
 from helpers import topic
+import logging
+
 
 
 def on_connect(client, userdata, flags, rc):
-	print("Connected with result code "+str(rc))
-	print("Subscribing to: {0}".format(userdata['topic_sub']))
+	logging.info("Connected with result code "+str(rc))
+	logging.info("Subscribing to: {0}".format(userdata['topic_sub']))
 	client.subscribe(userdata['topic_sub'])
 
 def on_message(client, userdata, msg):
@@ -17,7 +19,7 @@ def on_message(client, userdata, msg):
 		command = 'on'
 	
 	client.publish(topic_pub, command)
-	print("{0}:{1} -> {2}:{3}".format(msg.topic, value, topic_pub, command))
+	logging.info("{0}:{1} -> {2}:{3}".format(msg.topic, value, topic_pub, command))
 
 class Watering(object):
 	def __init__(self, topic_sub, topic_pub):
@@ -27,6 +29,7 @@ class Watering(object):
 		self.name = 'watering'
 
 	def run(self):
+		logging.info("Watering")
 		client = broker.connect()
 		client.on_connect = on_connect
 		client.on_message = on_message

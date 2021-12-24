@@ -26,5 +26,5 @@ def load(configuration_file):
 				s_topic = topic.build(s_instance.id, s_instance.type, 'sensors')
 				list_of_sensors.append({'instance':s_instance, 'topic':s_topic})
 		except yaml.YAMLError as exc:
-			print(exc)
+			logging.info(exc)
 	return list_of_sensors

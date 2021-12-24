@@ -10,10 +10,10 @@ sensors:
       gpio:
         pin: 10
         mode: BMD
-      polling_seconds: 1
+      polling_seconds: 2
     - id: 0
       type: meteo
-      polling_seconds: 7200
+      polling_seconds: 4
 servos:
   - id: 0
     type: waterpump
