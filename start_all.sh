@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "- Broker"
-nohup sh broker.sh </dev/null >/dev/null 2>&1  &
+sh daemon_broker.sh
 sleep 1
 source venv/bin/activate
 echo "- Servos"

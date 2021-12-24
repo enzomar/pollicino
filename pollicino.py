@@ -20,15 +20,13 @@ DEFAUL_CONGIF_FILE = "pollicino.yaml"
 
 def parse_input():
 	parser = argparse.ArgumentParser(allow_abbrev=False)
-	parser.add_argument('-m','--mode', action='store', choices=['servos', 'sensors', 'ctrl'], required=True)
+	parser.add_argument('-m','--mode', action='store', choices=['servos', 'sensors', 'ctrl'])
 	parser.add_argument('-c','--config', action='store', default=DEFAUL_CONGIF_FILE)
-	parser.add_argument('-b','--brokerhost', action='store', default="0.0.0.0:1883")
 	args = parser.parse_args()
-	return args.mode, args.config, args.brokerhost
+	return args.mode, args.config
 
 
-def run(mode, config, brokerhost):
-	broker.write(brokerhost)
+def run(mode, config):
 	if mode == "servos":
 		# subscribe for each topic and apply the relative action
 		logging.info("Run Servos")
@@ -49,5 +47,5 @@ def run(mode, config, brokerhost):
 		controller.run(config)
 
 if __name__ == "__main__":
-	mode, config, brokerhost = parse_input()
-	run(mode, config, brokerhost)
+	mode, config = parse_input()
+	run(mode, config)

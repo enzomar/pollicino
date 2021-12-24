@@ -41,7 +41,9 @@ ssh-keygen -t rsa
 git clone git@github.com:enzomar/pollicino.git
 sudo apt install python3 idle3
 sudo update-alternatives --install $(which python) python $(readlink -f $(which python3)) 3
-sh setup.sh
+venv
+pip install -r requirements.txt
+
 
 
 

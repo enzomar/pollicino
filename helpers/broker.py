@@ -14,6 +14,7 @@ listener {0} {1}"
 	try:
 		port=host_port[1]
 	except:
+		port=1883
 		pass
 
 	content = content.format(port, host).strip()

@@ -1,1 +1,3 @@
-/usr/local/sbin/mosquitto -c broker/mosquitto.conf
+#!/bin/bash
+
+/usr/local/sbin/mosquitto -c broker/mosquitto.conf -v
