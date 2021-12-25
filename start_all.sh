@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "- Broker"
 ./daemon_broker.sh
