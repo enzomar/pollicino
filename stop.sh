@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	ps -aux | grep pollicino | grep -v grep | awk '{print "kill -9 " $2}' | sh
@@ -17,4 +15,4 @@ fi
 
 
 
-sh state.sh
+./state.sh
