@@ -15,10 +15,11 @@ def on_connect(client, userdata, flags, rc):
   client.subscribe(topics_sub)
 
 def on_message(client, userdata, msg):
-  area, sensor_type, sensor_id = topic.extract(msg.topic)
+  logging.debug("on_message")
+  sector, category, sensor_type, sensor_id = topic.extract(msg.topic)
   value = msg.payload.decode()
-
-  servo_instance = userdata[sensor_type][sensor_id]
+  logging.info("{0}:{1}".format(msg.topic, value))
+  servo_instance = userdata['servos_pool'][sensor_id]['instance']
   if value == 'on':
     # to check this check is really usefull
     if servo_instance.status == 'off':

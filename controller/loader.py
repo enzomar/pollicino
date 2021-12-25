@@ -24,10 +24,10 @@ def load(configuration_file):
 						servo_type = sector_config['servos'][servo_id]['type']
 						sensor_id = str(each['sensor_id'])
 						sensor_type = sector_config['sensors'][sensor_id]['type']
-
+						threashold = each['threshold']
 						topic_sub = topic.status(sensor_id, sensor_type, 'sensors', sector)
-						topic_pub = topic.cmd_pub(servo_id, servo_type, 'servo', sector)
-						c_instance = c_class(topic_sub, topic_pub)
+						topic_pub = topic.cmd_pub(servo_id, servo_type, 'servos', sector)
+						c_instance = c_class(topic_sub, topic_pub, threashold)
 						list_of_ctrls.append(c_instance)
 		except yaml.YAMLError as exc:
 			logging.info(exc)

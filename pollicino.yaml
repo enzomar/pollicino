@@ -15,7 +15,6 @@ pollicino:
     '2':
       type: meteo
       polling_seconds: 4
-
   servos:
     '0':
       type: waterpump
@@ -29,4 +28,6 @@ pollicino:
           - sensor_id: 0 
             servo_id: 0
             threshold: 5
-   
+          - sensor_id: 2 
+            servo_id: 0
+            threshold: 'rain'

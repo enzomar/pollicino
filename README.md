@@ -35,6 +35,8 @@ https://www.youtube.com/watch?v=51dg2MsYHns
 
 https://mtlynch.io/greenpithumb/
 
+https://projects.raspberrypi.org/en/projects/build-your-own-weather-station/3
+
 Ansible
 --------
 ssh-keygen -t rsa
