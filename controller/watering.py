@@ -1,6 +1,8 @@
 import paho.mqtt.client as mqtt
 from helpers import broker
 from helpers import topic
+from helpers import command
+
 import logging
 import json
 
@@ -8,17 +10,17 @@ import json
 
 def handle_moisture(value, threshold):
 	# if the ground is dry, it is ime to water else stop the water
-	command = json.dumps({'state':'off'})
+	cmd = command.switch(0)
 	if value < int(threshold):
-		command = json.dumps({'state':'on', 'duration': '10', 'duration_unit':'s'})
-	return command
+		cmd = command.square(1,10)
+	return cmd
 
 def handle_meteo(value, threshold):
 	# if it is raining, stop the water
-	command = None
+	cmd = None
 	if value == 'Clouds' or value == 'Rain':
-		command = json.dumps({'state':'off'})
-	return command		
+		cmd = command.switch(0)
+	return cmd		
 	
 
 def on_connect(client, userdata, flags, rc):
@@ -28,23 +30,24 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, msg):
-
+	print("on message", flush=True)
 	value = float(msg.payload.decode())
 	topic_pub = userdata['topic_pub']
 	threshold = userdata['threshold']
 	sector, category, sensor_type, sensor_id = topic.extract(msg.topic)
-	command = None
+	cmd = None
 	if sensor_type == "moisture":
-		command = handle_moisture(value, threshold)
+		cmd = handle_moisture(value, threshold)
 
 	if sensor_type == "meteo":
-		command = handle_meteo(value, threshold)
-
-	if command:
-		client.publish(topic_pub, command)
-		logging.info("{0}:{1} -> {2}:{3}".format(msg.topic, value, topic_pub, command))
+		cmd = handle_meteo(value, threshold)
+	print(cmd, flush=True)
+	if cmd:
+		client.publish(topic_pub, cmd)
+		logging.info("{0}:{1} -> {2}:{3}".format(msg.topic, value, topic_pub, str(cmd)))
 	else:
 		logging.info("{0}:{1} -> None".format(msg.topic, value))
+	print("done", flush=True)
 
 
 

@@ -2,6 +2,7 @@ from servos import loader
 from helpers import broker
 from helpers import topic
 import logging
+import json
 
 
 
@@ -17,14 +18,19 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
   logging.debug("on_message")
   sector, category, sensor_type, sensor_id = topic.extract(msg.topic)
-  value = msg.payload.decode()
+  value = json.loads(msg.payload.decode())
   logging.info("{0}:{1}".format(msg.topic, value))
   servo_instance = userdata['servos_pool'][sensor_id]['instance']
-  if value == 'on':
-    if servo_instance.status == 'off':
-      servo_instance.on()
-  else: 
-    servo_instance.off()
+  #value = json.loads(value)
+  try:
+    if value['mode'] == 'switch':
+      if value['states'][0] == 1:
+        servo_instance.on()
+      else: 
+        servo_instance.off()
+  except TypeError as ex:
+    logging.error("{0}".format(str(ex)))
+
 
 
 def run(configuration_file):

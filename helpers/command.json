@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+    "additionalProperties": false,
+    "type": "object",
+	"required": [
+		"states", 
+		"mode",
+		"repetition"
+	],
+	"properties": {
+		"mode": {
+			"type": "string",
+			"default": "switch",
+	        "oneOf": [
+        	{
+          		"enum": ["switch", "pulse", "square"]
+        	}]
+		},
+		"states": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "type": "string"
+                },
+                "seconds": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "value",
+                "seconds"
+              ]
+            }
+          ]
+    	},
+		"repetition": {
+			"type": "integer",
+			"default": 0
+		}
+	}
+}

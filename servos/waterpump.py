@@ -1,6 +1,10 @@
-#import RPi.GPIO as GPIO
-from servos import base
+from . import base
 import logging
+
+try:
+	import RPi.GPIO as GPIO
+except:
+	pass
 
 
 class Waterpump(base.Base):

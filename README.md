@@ -41,6 +41,7 @@ note over o
 subscribe to "<sector>/servos/<type>/<id>/set"
 end note
 c->o: mqtt://<sector>/servos/<type>/<id>/set: <state>
+alt switch
 o->m: query
 alt 0
 m-->o: 0
@@ -48,6 +49,35 @@ o->m: set 1
 else 1
 m-->o: 1
 end
+end
+alt square
+o->m: query
+m-->o: <initial_state>
+o->m: <state>
+note over o
+sleep
+end note
+o->m: <initial_state>
+end
+
+alt pulse
+o->m: query
+m-->o: <initial_state>
+loop whished num of pulse
+o->m: <state_a>
+note over o
+sleep
+end note
+o->m: <state_b>
+note over o
+sleep
+end note
+end
+o->m: <initial_state>
+end
+
+
+
 
 
 
