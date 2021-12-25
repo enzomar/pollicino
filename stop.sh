@@ -13,6 +13,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 
-
-
 ./state.sh
