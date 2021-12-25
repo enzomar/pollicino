@@ -4,7 +4,6 @@ REGEX='^listener ([0-9]+) ([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)'
 import paho.mqtt.client as mqtt
 import logging
 
-
 def write(brokerhost):
 	content = "\
 allow_anonymous true \n\
@@ -60,6 +59,7 @@ def host_port():
 		port = 1883
 
 	return host, port
+
 
 if __name__ == "__main__":
 	logging.info(host_port())

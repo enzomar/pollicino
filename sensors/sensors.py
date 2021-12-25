@@ -13,11 +13,10 @@ def read_and_publish(sensor):
 			s_topic = sensor['topic']	
 			client.publish(s_topic, str(measure))
 			logging.info("{0} -> {1}".format(s_topic , str(measure)))
-			#logging.info("Wait for {0} sec".format(int(s_instance.polling_seconds)))
 			time.sleep(int(s_instance.polling_seconds))
 	except Exception as ex:
 		logging.error(ex)
-		client.disconnect()
+		#client.disconnect()
 		raise ex
 
 
