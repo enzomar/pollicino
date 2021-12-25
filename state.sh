@@ -2,7 +2,7 @@
 
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	ps -aux | grep pollicino | grep -v grep | awk '{ print "["$2"]: " $11" "$12" "$13" "}'
+	ps -aux | grep pollicino | grep -v grep | awk '{ print "["$2"]: " $11" "$12" "$13" "$14}'
 	ps -aux | grep broker | grep -v grep | awk '{ print "["$2"]: " $11" "$12" "$13}'
 	ps -aux | grep mosquitto | grep -v grep | awk '{ print "["$2"]: " $11" "$12" "$13}'
 

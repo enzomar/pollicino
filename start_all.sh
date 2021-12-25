@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "- Broker"
-sh daemon_broker.sh
+./daemon_broker.sh
 sleep 1
 source venv/bin/activate
 echo "- Servos"
@@ -14,5 +14,5 @@ echo "- Sensors"
 nohup python pollicino.py -m sensors </dev/null >/dev/null 2>&1 &
 sleep 1
 echo "Status"
-sh state.sh
+./state.sh
 
