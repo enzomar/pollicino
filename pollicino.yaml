@@ -25,9 +25,13 @@ pollicino:
   controllers:
       - type: watering
         links:
-          - sensor_id: 0 
+          - sensor_id: 0
+            sensor_type: moisture 
             servo_id: 0
+            servo_type: waterpump
             threshold: 5
-          - sensor_id: 2 
+          - sensor_id: 2
+            sensor_type: moisture 
             servo_id: 0
+            servo_type: waterpump
             threshold: 'rain'

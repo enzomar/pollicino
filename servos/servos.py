@@ -21,7 +21,6 @@ def on_message(client, userdata, msg):
   logging.info("{0}:{1}".format(msg.topic, value))
   servo_instance = userdata['servos_pool'][sensor_id]['instance']
   if value == 'on':
-    # to check this check is really usefull
     if servo_instance.status == 'off':
       servo_instance.on()
   else: 

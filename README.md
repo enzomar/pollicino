@@ -2,6 +2,53 @@
 "Done is better than perfect"
 
 
+Flow
+-------
+
+title Generic commumnication MQTT 
+participant Hardware\ndevice as d
+participant App\nsensors as i
+participant App\nctrl as c
+participant App\nservos as o
+participant Hardware\nmotor as m
+
+
+note over i,o
+Common configuration
+- MQTT broker
+- topic pattern
+end note
+
+note over c
+subscribe to "<sector>/sensors/+/+"
+link sensor and servo topics with <threshold>
+end note
+
+loop each X sec
+i->d: query
+d-->i: M
+i->c: mqtt://<sector>/sensors/<type>/<id>: <value>
+end
+note over c
+Apply logic 
+if <value> > <threshold> 
+then <state>
+end note
+note over o
+subscribe to "<sector>/servos/<type>/<id>/set"
+end note
+c->o: mqtt://<sector>/servos/<type>/<id>/set: <state>
+o->m: query
+alt 0
+m-->o: 0
+o->m: set 1
+else 1
+m-->o: 1
+end
+
+
+
+
 
 Software
 -------

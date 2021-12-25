@@ -19,11 +19,10 @@ def load(configuration_file):
 					c_type = ctrl['type']
 					c_class = CTRL_MAP[c_type]
 					for each in ctrl['links']:
-						
 						servo_id = str(each['servo_id'])
-						servo_type = sector_config['servos'][servo_id]['type']
+						servo_type = each['servo_type']
 						sensor_id = str(each['sensor_id'])
-						sensor_type = sector_config['sensors'][sensor_id]['type']
+						sensor_type = each['sensor_type']
 						threashold = each['threshold']
 						topic_sub = topic.status(sensor_id, sensor_type, 'sensors', sector)
 						topic_pub = topic.cmd_pub(servo_id, servo_type, 'servos', sector)
