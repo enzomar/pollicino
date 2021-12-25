@@ -1,3 +1,6 @@
+Python 3 MUST!
+
+
 "Premature Optmization is the roots of all the evil"
 "Done is better than perfect"
 
@@ -87,12 +90,13 @@ https://projects.raspberrypi.org/en/projects/build-your-own-weather-station/3
 Ansible
 --------
 ssh-keygen -t rsa
+install samba
 git clone git@github.com:enzomar/pollicino.git
 sudo apt install python3 idle3
 sudo update-alternatives --install $(which python) python $(readlink -f $(which python3)) 3
 venv
 pip install -r requirements.txt
-
+install samba -> https://pimylifeup.com/raspberry-pi-samba/
 
 
 

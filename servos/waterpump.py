@@ -1,5 +1,7 @@
+#import RPi.GPIO as GPIO
 from servos import base
 import logging
+
 
 class Waterpump(base.Base):
 	def __init__(self, servo_id):
