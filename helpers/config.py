@@ -1,40 +1,37 @@
-import yaml
 import json
 
+import yaml
+
+
 def _parse_yaml_to_dict(values):
-	output = dict()
+    output = dict()
 
-	#print(values)
-	for sector in values['sectors']:
-		sec_id = sector['id']
-		output[sec_id] = dict()
-		output[sec_id]['sensors'] = dict()
-		for sensor in sector['sensors']:
-			sensor_id = sensor['id']
-			output[sec_id]['sensors'][sensor_id] = dict()
-			for each in sensor:
-				output[sec_id]['sensors'][sensor_id][each] = sensor[each]
+    # print(values)
+    for sector in values['sectors']:
+        sec_id = sector['id']
+        output[sec_id] = dict()
+        output[sec_id]['sensors'] = dict()
+        for sensor in sector['sensors']:
+            sensor_id = sensor['id']
+            output[sec_id]['sensors'][sensor_id] = dict()
+            for each in sensor:
+                output[sec_id]['sensors'][sensor_id][each] = sensor[each]
 
-	return output
-
-
-
+    return output
 
 
 def load(configuration_file):
-	output = dict()
-	with open(configuration_file, "r") as stream:
-		try:
-			values = yaml.safe_load(stream)
-			return values
-		except yaml.YAMLError as exc:
-			logging.error(exc)
-
+    output = dict()
+    with open(configuration_file, "r") as stream:
+        try:
+            values = yaml.safe_load(stream)
+            return values
+        except yaml.YAMLError as exc:
+            logging.error(exc)
 
 
 if __name__ == "__main__":
-	print(json.dumps(load("../pollicino.yaml")))
-
+    print(json.dumps(load("../pollicino.yaml")))
 
 """
 sectors: 

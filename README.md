@@ -117,6 +117,10 @@ https://mtlynch.io/greenpithumb/
 
 https://projects.raspberrypi.org/en/projects/build-your-own-weather-station/3
 
+https://schedule.readthedocs.io/en/stable/examples.html#pass-arguments-to-a-job
+
+https://crontab.guru/#0_7_*_2_*
+
 Ansible
 --------
 ssh-keygen -t rsa

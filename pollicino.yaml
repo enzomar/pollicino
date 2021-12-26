@@ -23,15 +23,22 @@ pollicino:
         mode: BMD
       off_after_min: 60
   controllers:
+      - type: scheduler
+        links:
+          - start: "0 6 * * *"
+            duration_seconds: "30"
+            state: 1
+            servo_id: 0
+            servo_type: waterpump
       - type: watering
         links:
           - sensor_id: 0
             sensor_type: moisture 
             servo_id: 0
             servo_type: waterpump
-            threshold: 5
+            threshold: 5 #excluded
           - sensor_id: 2
-            sensor_type: moisture 
+            sensor_type: meteo 
             servo_id: 0
             servo_type: waterpump
             threshold: 'rain'
