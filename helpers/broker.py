@@ -3,7 +3,7 @@ import re
 MOSQUITTO_CONF = "broker/mosquitto.conf"
 REGEX = '^listener ([0-9]+) ([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)'
 import paho.mqtt.client as mqtt
-import logging
+import logging, time
 
 
 def write(brokerhost):
@@ -29,11 +29,15 @@ def connect():
     client = mqtt.Client()
     host, port = host_port()
     logging.info("Connecting to {0}:{1}".format(host, port))
-    try:
-        client.connect(host, port, 60)
-    except ConnectionRefusedError as ex:
-        logging.info(ex)
-        raise ex
+    connected = False
+    while not connected:
+        try:
+            client.connect(host, port, 60)
+            connected = True
+        except ConnectionRefusedError as ex:
+            logging.error(ex)
+            logging.info("Retring in {0} seconds".format(5))
+            time.sleep(5)
     return client
 
 
