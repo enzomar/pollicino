@@ -1,2 +1,15 @@
----
-# tasks file for common
+- name: Clone/Update Pollicino repository
+  git:
+    repo: git@github.com:enzomar/pollicino.git
+    dest: pollicino
+    update: yes
+    clone: yes
+    force: yes
+
+- name: Setup env
+  command: chdir=pollicino ./setup.sh
+  register: output
+
+- debug: msg="{{ output.stdout }}"
+
+- debug: msg="{{ output.stderr }}"

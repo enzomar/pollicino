@@ -1,2 +1,13 @@
 ---
 # tasks file for sensors
+- name: Stop
+  command: chdir=pollicino ./stop.sh
+  register: output
+
+
+# tasks file for sensors
+- name: Start
+  command: chdir=pollicino ./sensors.sh
+  register: output
+- debug: msg="{{ output.stdout }}"
+- debug: msg="{{ output.stderr }}"
