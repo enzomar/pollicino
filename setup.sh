@@ -8,8 +8,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 echo "# VIRTUALENV"
+pip3 install virtualenv 
 virtualenv -p python3 venv
 source venv/bin/activate
 
 echo "# REQUIREMENTS"
-pip install -r requirements.txt
+pip3 install -r requirements.txt
