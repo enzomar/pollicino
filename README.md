@@ -123,6 +123,8 @@ https://crontab.guru/#0_7_*_2_*
 
 Ansible
 --------
+ssh-copy-id -i .ssh/id_rsa.pub pi@raspberrypi
+ansible -i hosts -m setup -a 'filter=ansible_memtotal_mb' all
 ssh-keygen -t rsa
 install samba
 git clone git@github.com:enzomar/pollicino.git
