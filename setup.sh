@@ -9,7 +9,7 @@ fi
 
 echo "# VIRTUALENV"
 pip3 install virtualenv 
-virtualenv -p python3 venv
+python -m virtualenv -p python3 venv
 source venv/bin/activate
 
 echo "# REQUIREMENTS"
