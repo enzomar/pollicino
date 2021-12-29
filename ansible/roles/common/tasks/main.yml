@@ -6,9 +6,11 @@
     clone: yes
     force: yes
 
-- name: Setup env
+- name: Setup environment (if needed)
   command: chdir=pollicino ./setup.sh
   register: output
+  args: 
+    creates: venv
 
 - debug: msg="{{ output.stdout }}"
 
