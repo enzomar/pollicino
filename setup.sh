@@ -19,7 +19,7 @@ function install_mosquitto {
 		if apt list mosquitto --installed | grep -q mosquitto; then
 			echo "Skipping beacause it is already installed"
 		else
-			sudo apt-get install mosquitto
+			sudo apt-get install mosquitto -y
 		fi
 	elif [[ "$OSTYPE" == "darwin"* ]]; then
 		if brew list --formula -1 | grep -q mosquitto; then
