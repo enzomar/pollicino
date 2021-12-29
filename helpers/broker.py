@@ -13,7 +13,7 @@ class Singleton(type):
         return cls._instances[cls]
         
 
-class Broker(object):
+class Broker(metaclass=Singleton):
     __metaclass__ = Singleton
 
     def __init__(self):
@@ -22,6 +22,7 @@ class Broker(object):
 
     def set_host(self, host):
         self.host = host
+        logging.info("Broker host set to {0}".format(host))
 
     def set_port(self, port):
         self.port = port
