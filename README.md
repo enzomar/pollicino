@@ -1,3 +1,85 @@
+
+# Pollicino
+
+*"Done is better than perfect!"* and *"Premature optimization is the root of all evil"* are two of the guidelines I follow for my new Christmas project. As almost every year I commit my self to start and hopeull complete a project during the Christmas holiday. It can be about anthign basically, from craving soem woods to build home made lamp.
+This time I focus on domotic and gardening and since the beginning I  had the feeling could be a very long project... this is why I tried to repeat to my self the two senteces aboves...
+
+ The goal of the project is to provide a way to ***automatize plants  and garden caring***.
+It is full of projects on internet about this and I do took a lot of inspiration from them but I added some some personalization to enable scalability, customization and plug and play approach.
+
+Here some of the component and tools used to give you an idea of what you will find here:
+
+- Several Raspberry PI Zero W
+- Several Sensors (Moisture, Brightness,...)
+- Several Solenoid valve, servo motor
+- MQTT protocol (Mosquitto)
+- Ansible
+- Docker
+- Python
+
+# Architecture
+
+## Flow
+
+![archi](docs/flow.png)
+
+- The **sensor** it is in charge to observe regularly the phisical environment and publish state and measurement
+- The **controller** goal is to read the input from the sensors and, after applying a certain logic, it will eventually send commands to the servo to change the state of the environment. It is also possible to *schedule* commands.
+- The objective of the **servo** is to execute the command sent by the controller by activating an engine, solenoid valve or any other phisical device. It has triggers:
+    - *Switch*: it is basic binary on / off cmmands (ie. shiwtgin on/off a light)
+    - *Square*: Is will maitain a certain state for a given time (ie. open water for a given amout of time)
+    - *Pulse*: it will change state multiple times over time 
+
+- The **broker** role is to provide a scalable and realilable message bus used by the oher component to communicate.
+
+## Components
+
+![archi](docs/pollicino.png)
+
+
+### Broker  
+In order to make the component communicating the protocol choosed in [MQTT](https://mqtt.org/) that can be considered the standard in the IoT communication.   
+MQTT is a pub/sub protocol based on the concept and desing of topic to be publisced by a producer and subscribed by consumer.I strongly suggest you to have a look to this [link](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) , it explains quite well how to perform the first step into the deisgn part of MQTT Topic.
+#### Topic
+Defining the topic grammar is crucial in order to be able to govern the message exchange in a clear way. Here below the selected ones:
+
+    PATTERN_STATUS = '{sector}/{category}/{type}/{dev_id}'
+    PATTERN_CMD_PUB = '{sector}/{category}/{type}/{dev_id}/set'
+    PATTERN_CMD_SUB = '{sector}/{category}/+/+/set'
+
+- The *sensor* will **publish** PATTERN_STATUS
+- The *controller* will **suscribe** to PATTERN_STATUS
+- The *controller* will **publish** to PATTERN\_CMD_PUB
+- The *servo* will **suscribe** to PATTERN\_CMD_SUB
+
+Note that all sensors and servos (*category*) operate in a certain *sector* and they are identifed by a *type* and an *id*
+
+### Sensor
+
+
+
+### Controller
+
+
+
+### Servos
+
+
+
+## Simulation
+I decide to test all the entrire application before finalizing the hardware connestion and soldering. The idea is to use 
+- docker to instanc
+
+# Hardware
+## Electric schema
+
+# Put all together
+### Next steps
+
+### References
+
+
+------------------------------------------
 Python 3 MUST!
 
 
@@ -8,7 +90,7 @@ Python 3 MUST!
 Flow
 -------
 
-title Generic commumnication MQTT 
+title Flow 
 participant Hardware\ndevice as d
 participant App\nsensors as i
 participant App\nctrl as c

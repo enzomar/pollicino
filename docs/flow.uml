@@ -1,0 +1,67 @@
+title Flow 
+participant Hardware\ndevice as d
+participant App\nsensors as i
+participant App\nctrl as c
+participant App\nservos as o
+participant Hardware\nmotor as m
+
+
+note over i,o
+Common configuration
+- MQTT broker
+- topic pattern
+end note
+
+note over c
+subscribe to "<sector>/sensors/+/+"
+link sensor and servo topics with <threshold>
+end note
+
+loop each X sec
+i->d: query
+d-->i: M
+i->c: mqtt://<sector>/sensors/<type>/<id>: <value>
+end
+note over c
+Apply logic 
+if <value> > <threshold> 
+then <state>
+end note
+note over o
+subscribe to "<sector>/servos/<type>/<id>/set"
+end note
+c->o: mqtt://<sector>/servos/<type>/<id>/set: <state>
+alt switch
+o->m: query
+alt 0
+m-->o: 0
+o->m: set 1
+else 1
+m-->o: 1
+end
+end
+alt square
+o->m: query
+m-->o: <initial_state>
+o->m: <state>
+note over o
+sleep
+end note
+o->m: <initial_state>
+end
+
+alt pulse
+o->m: query
+m-->o: <initial_state>
+loop whished num of pulse
+o->m: <state_a>
+note over o
+sleep
+end note
+o->m: <state_b>
+note over o
+sleep
+end note
+end
+o->m: <initial_state>
+end
