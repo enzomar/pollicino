@@ -8,7 +8,7 @@ from sensors import loader
 
 
 def read_and_publish(sensor):
-    client = broker.connect()
+    client = broker.Broker().connect()
     try:
         while True:
             s_instance = sensor['instance']

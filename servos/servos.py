@@ -35,7 +35,7 @@ def on_message(client, userdata, msg):
 def run(configuration_file):
     servos_pool = loader.load(configuration_file)
 
-    client = broker.connect()
+    client = broker.Broker().connect()
     client.on_connect = on_connect
     client.on_message = on_message
     userdata = dict()

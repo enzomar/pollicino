@@ -54,7 +54,7 @@ class Watering(object):
 
     def run(self):
         logging.info("Watering")
-        client = broker.connect()
+        client = broker.Broker().connect()
         client.on_connect = on_connect
         client.on_message = on_message
         client.user_data_set(self.config)

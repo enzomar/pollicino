@@ -5,69 +5,39 @@ REGEX = '^listener ([0-9]+) ([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)'
 import paho.mqtt.client as mqtt
 import logging, time
 
+class Singleton(type):
+    _instances = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+        
 
-def write(brokerhost):
-    content = "\
-allow_anonymous true \n\
-listener {0} {1}"
-    host_port = brokerhost.split(':')
-    host = host_port[0]
-    try:
-        port = host_port[1]
-    except:
-        port = 1883
-        pass
+class Broker(object):
+    __metaclass__ = Singleton
 
-    content = content.format(port, host).strip()
-    with open(MOSQUITTO_CONF, 'w') as conffile:
-        conffile.write(content)
+    def __init__(self):
+        self.host = '0.0.0.0'
+        self.port = 1883
 
-    logging.debug("Wrote {0}".format(content))
+    def set_host(self, host):
+        self.host = host
 
+    def set_port(self, port):
+        self.port = port
 
-def connect():
-    client = mqtt.Client()
-    host, port = host_port()
-    logging.info("Connecting to {0}:{1}".format(host, port))
-    connected = False
-    while not connected:
-        try:
-            client.connect(host, port, 60)
-            connected = True
-        except ConnectionRefusedError as ex:
-            logging.error(ex)
-            logging.info("Retring in {0} seconds".format(5))
-            time.sleep(5)
-    return client
-
-
-def host_port():
-    # read mosquitto configuration file
-    # and extract the ip:port
-    # ie.listener 1883 192.168.1.195
-
-    # default
-    host = None
-    port = None
-
-    try:
-        with open(MOSQUITTO_CONF) as conffile:
-            for each in conffile:
-                found_host_port = re.search(REGEX, each)
-                if found_host_port:
-                    port = int(found_host_port.group(1))
-                    host = found_host_port.group(2)
-    except FileNotFoundError:
-        logging.info("Filenotfound")
-
-    if not (host or port):
-        host = "localhost"
-        port = 1883
-
-    return host, port
+    def connect(self):
+        client = mqtt.Client()
+        logging.info("Connecting to {0}:{1}".format(self.host, self.port))
+        connected = False
+        while not connected:
+            try:
+                client.connect(self.host, self.port, 60)
+                connected = True
+            except ConnectionRefusedError as ex:
+                logging.error(ex)
+                logging.info("Retring in {0} seconds".format(5))
+                time.sleep(5)
+        return client
 
 
-if __name__ == "__main__":
-    logging.info(host_port())
-# logging.info(host())
-# logging.info(port())
