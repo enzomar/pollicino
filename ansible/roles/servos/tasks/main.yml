@@ -1,0 +1,18 @@
+---
+# tasks file for servos
+- name: Stop
+  command: chdir=pollicino ./stop.sh
+  register: output
+
+
+# tasks file for servos
+- name: Start
+  command: chdir=pollicino ./servos.sh
+  register: output
+
+# tasks file for servos
+- name: State
+  command: chdir=pollicino ./state.sh
+  register: output
+- debug: msg="{{ output.stdout_lines }}"
+- debug: msg="{{ output.stderr_lines }}"

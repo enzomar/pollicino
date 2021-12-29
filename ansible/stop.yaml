@@ -1,0 +1,12 @@
+--- 
+-  hosts: all 
+   gather_facts: no
+   tasks:
+      - name: Stop
+        command: chdir=pollicino ./stop.sh
+        register: output
+
+      - debug: 
+         var: output.stdout_lines
+      - debug:
+         var: output.stderr_lines
