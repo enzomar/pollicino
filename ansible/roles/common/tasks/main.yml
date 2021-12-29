@@ -9,9 +9,6 @@
 - name: Setup environment (if needed)
   command: chdir=pollicino ./setup.sh
   register: output
-  args: 
-    creates: venv
 
-- debug: msg="{{ output.stdout }}"
-
-- debug: msg="{{ output.stderr }}"
+- debug: msg="{{ output.stdout_lines }}"
+- debug: msg="{{ output.stderr_lines }}"

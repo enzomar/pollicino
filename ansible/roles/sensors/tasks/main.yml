@@ -14,5 +14,5 @@
 - name: State
   command: chdir=pollicino ./state.sh
   register: output
-- debug: msg="{{ output.stdout }}"
-- debug: msg="{{ output.stderr }}"
+- debug: msg="{{ output.stdout_lines }}"
+- debug: msg="{{ output.stderr_lines }}"

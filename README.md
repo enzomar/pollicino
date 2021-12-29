@@ -123,6 +123,9 @@ https://crontab.guru/#0_7_*_2_*
 
 https://nazrul.me/2019/07/17/ssh-agent-forward-into-docker-container-on-macos/
 
+
+ansible-playbook setup.yaml -i hosts_emu -v
+
 Ansible
 --------
 ssh-copy-id -i .ssh/id_rsa.pub pi@raspberrypi

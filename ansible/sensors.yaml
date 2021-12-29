@@ -1,5 +1,0 @@
---- 
--  hosts: sensors 
-   gather_facts: no
-   roles: 
-      - {role: sensors}

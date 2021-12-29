@@ -7,6 +7,15 @@ services:
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
+  broker:
+    build: .
+    container_name: "broker"
+    tty: true
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+    ports:
+      - 1883:1883
+
   sensor_a:
     build: .
     container_name: "sensor_a"
