@@ -1,7 +1,7 @@
 
 # Pollicino
 
-*"Done is better than perfect!"* and *"Premature optimization is the root of all evil"* are two of the guidelines I follow for my new Christmas project. As almost every year I commit my self to start and hopeull complete a project during the Christmas holiday. It can be about anthign basically, from craving soem woods to build home made lamp.
+*"Done is better than perfect!"* and *"Premature optimization is the root of all evil"* are two of the guidelines I follow for my new Christmas project. As almost every year I commit myself to start and hopeful to complete a project during the Christmas holiday.
 This time I focus on domotic and gardening and since the beginning I  had the feeling could be a very long project... this is why I tried to repeat to my self the two senteces aboves...
 
  The goal of the project is to provide a way to ***automatize plants  and garden caring***.
@@ -12,38 +12,55 @@ Here some of the component and tools used to give you an idea of what you will f
 - Several Raspberry PI Zero W
 - Several Sensors (Moisture, Brightness,...)
 - Several Solenoid valve, servo motor
-- MQTT protocol (Mosquitto)
+- MQTT (Mosquitto, MQTT Explorer)
 - Ansible
 - Docker
 - Python
+- Mac OSX
 
 # If you have just 5 minutes ...
 
 ### Prerequisites
-Install
-- Ansible
-- MQTT Explorer
+Ensure you have installed
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- [MQTT Explorer](http://mqtt-explorer.com/)
+- [Docker](https://docs.docker.com/get-docker/)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ### Run simulation
-**Terminal 1**
+1) Start machines on docker
+
+On **Terminal 1**
 ```shell
 git clone git@github/enzomar/pollicino
 cd pollicino/emu
 docker-compose up
 ```
-**Terminal 2**
+2) Configure manchines and start
+
+On **Terminal 2**
 ```shell
 cd pollicino/ansible
 ansible-playbook setup.yaml -i hosts_emu
 ansible-playbook start.yaml -i hosts_emu
 ```
-**MQQT Explorer**
 
-Configure to MQQT Exploere to connect to local host localhost:1883 and press **Connect**
+3) Open MQTT Explorer and create a new connection ( host = localhost, port = 1883)
+
+On **MQQT Explorer**
 
 ![MQTT_Explorer](docs/MQTT_Explorer.png)
 
-Enjoy the simulation...
+4)  Connect to the broker and explore
+
+![MQTT_Explorer2](docs/MQTT_Explorer2.png)
+
+5) Close 
+
+On **Terminal 1**
+```shell
+CTRL+c
+```
 
 # If you have more time...
 # Architecture
@@ -84,6 +101,7 @@ Defining the topic grammar is crucial in order to be able to govern the message 
 Note that all sensors and servos (*category*) operate in a certain *sector* and they are identifed by a *type* and an *id*
 
 ### Sensor
+The sensors needs to transmit at regular time status of a given device. It is possible to set **polling_in_second** 
 
 
 
@@ -92,6 +110,10 @@ Note that all sensors and servos (*category*) operate in a certain *sector* and 
 
 
 ### Servos
+
+### Configuration
+All the components can be confiured by specifing behavior or hardware connection in a configuration file.
+
 
 
 
@@ -106,6 +128,7 @@ I decide to test all the entrire application before finalizing the hardware conn
 ### Next steps
 
 ### References
+
 
 
 ------------------------------------------
