@@ -9,5 +9,10 @@
 - name: Start
   command: chdir=pollicino ./sensors.sh
   register: output
+
+# tasks file for sensors
+- name: State
+  command: chdir=pollicino ./state.sh
+  register: output
 - debug: msg="{{ output.stdout }}"
 - debug: msg="{{ output.stderr }}"
