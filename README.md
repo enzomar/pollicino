@@ -17,6 +17,35 @@ Here some of the component and tools used to give you an idea of what you will f
 - Docker
 - Python
 
+# If you have just 5 minutes ...
+
+### Prerequisites
+Install
+- Ansible
+- MQTT Explorer
+
+### Run simulation
+**Terminal 1**
+```shell
+git clone git@github/enzomar/pollicino
+cd pollicino/emu
+docker-compose up
+```
+**Terminal 2**
+```shell
+cd pollicino/ansible
+ansible-playbook setup.yaml -i hosts_emu
+ansible-playbook start.yaml -i hosts_emu
+```
+**MQQT Explorer**
+
+Configure to MQQT Exploere to connect to local host localhost:1883 and press **Connect**
+
+![MQTT_Explorer](docs/MQTT_Explorer.png)
+
+Enjoy the simulation...
+
+# If you have more time...
 # Architecture
 
 ## Flow
@@ -42,7 +71,7 @@ In order to make the component communicating the protocol choosed in [MQTT](http
 MQTT is a pub/sub protocol based on the concept and desing of topic to be publisced by a producer and subscribed by consumer.I strongly suggest you to have a look to this [link](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) , it explains quite well how to perform the first step into the deisgn part of MQTT Topic.
 #### Topic
 Defining the topic grammar is crucial in order to be able to govern the message exchange in a clear way. Here below the selected ones:
-
+    
     PATTERN_STATUS = '{sector}/{category}/{type}/{dev_id}'
     PATTERN_CMD_PUB = '{sector}/{category}/{type}/{dev_id}/set'
     PATTERN_CMD_SUB = '{sector}/{category}/+/+/set'
