@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+  ctrl:
+    build: .
+    container_name: "ctrl"
+    tty: true
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+
+  sensor_a:
+    build: .
+    container_name: "sensor_a"
+    tty: true
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+
+
+  sensor_b:
+    build: .
+    container_name: "sensor_b"
+    tty: true
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+
+  sensor_c:
+    build: .
+    container_name: "sensor_c"  
+    tty: true
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+
+  servo_a:
+    build: .
+    container_name: "servo_a"
+    tty: true
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+
+  servo_b:
+    build: .
+    container_name: "servo_b"
+    tty: true
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
