@@ -1,27 +1,41 @@
 
 # Pollicino
 
-*"Done is better than perfect!"* and *"Premature optimization is the root of all evil"* are two of the guidelines I follow for my new Christmas project. As almost every year I commit myself to start and hopeful to complete a project during the Christmas holiday.
-This time I focus on domotic and gardening and since the beginning I  had the feeling could be a very long project... this is why I tried to repeat to my self the two senteces aboves...
+*"Done is better than perfect!"* and *"Premature optimization is the root of all evil"* are two of the guidelines I am following for my new Christmas project. As almost every year I commit myself to start and hopeful to complete a project and this time I focused on domotic and gardening.
 
- The goal of the project is to provide a way to ***automatize plants  and garden caring***.
+The goal of the project is indeed to provide a way to ***automatize plants  and garden caring***.
+
 It is full of projects on internet about this and I do took a lot of inspiration from them but I added some some personalization to enable scalability, customization and plug and play approach.
 
 Here some of the component and tools used to give you an idea of what you will find here:
 
-- Several Raspberry PI Zero W
-- Several Sensors (Moisture, Brightness,...)
-- Several Solenoid valve, servo motor
+- Raspberry PI Zero W
+- Sensors (Moisture, Brightness,...)
+- Solenoid valve, servo motor
 - MQTT (Mosquitto, MQTT Explorer)
 - Ansible
 - Docker
 - Python
 - ...
 
-# If you have just some minutes...
+<hr/>
+
+### Table of Contents
+
+1. [If you have just some minutes...](#some_minutes)
+2. [Software and flow](#software) (Almost finished)
+3. [Hardware](#hardware) (Just started)
+4. [Up and running](#all) (To do)
+6. [Contributing and next step](#contributing)
+7. [References](#references)
+
+<hr/>
+
+# If you have just some minutes... <a name="some_minutes"></a>
 
 ## Prerequisites
 Ensure you have installed
+
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [MQTT Explorer](http://mqtt-explorer.com/)
 - [Docker](https://docs.docker.com/get-docker/)
@@ -32,15 +46,18 @@ Ensure you have installed
 1) Start machines on docker
 
 On **Terminal 1**
-```shell
+
+```bash
 git clone git@github/enzomar/pollicino
 cd pollicino/emu
 docker-compose up
 ```
+
 2) Configure manchines and start
 
 On **Terminal 2**
-```shell
+
+```bash
 cd pollicino/ansible
 ansible-playbook setup.yaml -i hosts_emu
 ansible-playbook start.yaml -i hosts_emu
@@ -59,14 +76,15 @@ On **MQQT Explorer**
 5) Close 
 
 On **Terminal 1**
+
 ```shell
 CTRL+c
 ```
 
-# If you have more time...
-# Software
+# If you have more time... 
+# Software <a name="software"></a>
 
-## Architecture
+## Flow
 
 ![archi](docs/flow.png)
 
@@ -96,19 +114,57 @@ Defining the topic grammar is crucial in order to be able to govern the message 
 
 Note that all sensors and servos (*category*) operate in a certain *sector* and they are identifed by a *type* and an *id*
 
+
 ## Components
 
 ![archi](docs/pollicino.png)
 
 
 ## Sensor
-The sensors needs to transmit at regular time status of a given device. It is possible to set **polling_in_second** 
+The sensors needs to transmit at regular time status of a given device. It is possible to set **polling_in\_second** 
 
 ## Controller
 
 ## Servos
 
-# Hardware
+## Project Organization
+
+```bash
+├── ansible           <- ansible roles to automatize tasks across multiple machienes
+├── broker            
+├── controller
+├── docs
+├── emu
+├── helpers
+├── sensors
+├── servos
+├── venv
+├── LICENSE.md
+├── MANIFEST.in
+├── README.md
+├── __init__.py
+├── _config.yml
+├── broker.sh
+├── controller.sh
+├── daemon_broker.sh
+├── pollicino.py
+├── pollicino.yaml
+├── requirements.txt
+├── sensors.sh
+├── servos.sh
+├── setup.sh
+├── start_all.sh
+├── state.sh
+└── stop.sh
+```
+
+# Simulation
+I decide to test all the entire application before finalizing the hardware connestion and soldering. The idea is to use 
+- docker to instance
+
+
+# Hardware <a name="hardware"></a>
+
 
 This is the hardware used:
 - 3 Raspberry PI Zero W
@@ -126,17 +182,16 @@ This is the hardware used:
 
 # Network
 
-# Putting all together
-
-# Simulation
-I decide to test all the entire application before finalizing the hardware connestion and soldering. The idea is to use 
-- docker to instance
+# Putting all together <a name="all"></a>
 
 
 
-# Next steps and on going tasks
+# Next steps and on going tasks <a name="next"></a>
 
-# References
+# Contributing <a name="contributing"></a>
+
+# References <a name="reference"></a>
+
 
 
 
