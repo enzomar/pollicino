@@ -103,7 +103,7 @@ CTRL+c
 
 ![archi](docs/pollicino.png)
 
-## Message bus and broker
+### Message bus and broker
 The protocol choosed to make the components exchanging messages is [MQTT](https://mqtt.org/). It can be considered the standard in the IoT communication.   
 MQTT is a pub/sub protocol and its main elementis the topic to be published by a producer and subscribed by consumer. I strongly suggest you to have a look to this [link](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) , it explains quite well how to perform the first step into the deisgn part of MQTT Topic.
 ### Topic
@@ -121,12 +121,12 @@ Defining the topic grammar is crucial in order to be able to govern the message 
 Note that all sensors and servos (*category*) operate in a certain *sector* and they are identifed by a *type* and an *id*
 
 
-## Sensor
+### Sensor
 The sensors needs to transmit at regular time status of a given device. It is possible to set **polling_in\_second** 
 
-## Controller
+### Controller
 
-## Servos
+### Servos
 
 ## Project Organization
 
