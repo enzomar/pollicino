@@ -2,9 +2,9 @@ import logging
 
 import yaml
 
-from controller.watering import Watering
-from controller.scheduler import Scheduler
-from helpers import topic
+from pollicino.controller.watering import Watering
+from pollicino.controller.scheduler import Scheduler
+from pollicino.helpers import topic
 
 CTRL_MAP = {'watering': Watering, 'scheduler': Scheduler}
 

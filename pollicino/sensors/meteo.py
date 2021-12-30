@@ -1,7 +1,7 @@
 try:
-    from sensors import base
+    from pollicino.sensors import base
 except:
-    import base
+    from . import base
 
 import json
 

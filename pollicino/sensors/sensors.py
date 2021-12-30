@@ -3,8 +3,8 @@ import signal
 import time
 from multiprocessing import Pool
 
-from helpers import broker
-from sensors import loader
+from pollicino.helpers import broker
+from pollicino.sensors import loader
 
 
 def read_and_publish(sensor):

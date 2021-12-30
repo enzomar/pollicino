@@ -2,7 +2,7 @@ import logging
 import signal
 from multiprocessing import Pool
 
-from controller import loader
+from pollicino.controller import loader
 
 
 def init_worker():

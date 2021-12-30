@@ -3,10 +3,10 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 
-from controller import controller
-from sensors import sensors
-from servos import servos
-from helpers import broker
+from pollicino.controller import controller
+from pollicino.sensors import sensors
+from pollicino.servos import servos
+from pollicino.helpers import broker
 import argparse
 import logging
 

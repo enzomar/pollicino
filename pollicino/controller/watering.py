@@ -1,8 +1,8 @@
 import logging
 
-from helpers import broker
-from helpers import command
-from helpers import topic
+from pollicino.helpers import broker
+from pollicino.helpers import command
+from pollicino.helpers import topic
 
 
 def handle_moisture(value, threshold):

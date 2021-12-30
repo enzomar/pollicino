@@ -2,8 +2,8 @@ import logging
 
 import yaml
 
-from helpers import topic
-from servos.waterpump import Waterpump
+from pollicino.helpers import topic
+from pollicino.servos.waterpump import Waterpump
 
 SERVO_MAP = {'waterpump': Waterpump}
 

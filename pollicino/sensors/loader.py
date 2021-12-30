@@ -1,9 +1,9 @@
 import yaml
 
-from helpers import topic
-from sensors.meteo import Meteo
-from sensors.moisture import Moisture
-from sensors.photoresistor import Photoresistor
+from pollicino.helpers import topic
+from pollicino.sensors.meteo import Meteo
+from pollicino.sensors.moisture import Moisture
+from pollicino.sensors.photoresistor import Photoresistor
 
 DEFAULT_POLLING_SECONDS = 1
 

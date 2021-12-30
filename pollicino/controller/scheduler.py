@@ -5,7 +5,7 @@ from apscheduler.triggers.cron import CronTrigger
 from croniter import croniter
 from pytz import utc
 
-from helpers import command
+from pollicino.helpers import command
 
 
 class Scheduler(object):

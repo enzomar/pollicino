@@ -1,5 +1,5 @@
 import random
-import gpio
+import pollicino.helpers.gpio
 
 
 class Base(object):

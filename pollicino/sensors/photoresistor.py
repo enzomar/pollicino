@@ -1,4 +1,4 @@
-from sensors import base
+from pollicino.sensors import base
 
 
 class Photoresistor(base.Base):
