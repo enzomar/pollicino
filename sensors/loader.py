@@ -15,9 +15,11 @@ SENSORS_MAP = {'moisture': Moisture,
 def load_sensor(s_id, s_config, sector):
     s_type = s_config['type']
     s_polling_seconds = s_config['polling_seconds'] or DEFAULT_POLLING_SECONDS
+    s_pin_input = s_config['pin_input']
     s_class = SENSORS_MAP[s_type.lower()]
     s_instance = s_class(s_id)
     s_instance.polling_seconds = s_polling_seconds
+    s_instance.pin_input = s_pin_input
     s_topic = topic.status(s_instance.id, s_instance.type, 'sensors', sector)
     return s_instance, s_topic
 

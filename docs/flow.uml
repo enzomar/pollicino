@@ -23,44 +23,42 @@ d-->i: M
 i->c: mqtt://<sector>/sensors/<type>/<id>: <value>
 end
 note over c
-Apply logic 
-if <value> > <threshold> 
-then <state>
+Apply logic based on <threshold>
 end note
 note over o
 subscribe to "<sector>/servos/<type>/<id>/set"
 end note
-c->o: mqtt://<sector>/servos/<type>/<id>/set: <state>
 alt switch
+c->o: mqtt://<sector>/servos/<type>/<id>/set: <desired_state>
 o->m: query
-alt 0
-m-->o: 0
-o->m: set 1
-else 1
-m-->o: 1
+m-->o: <initial_state>
+alt <initial_state> different than <desired_state> 
+o->m: set <desired_state>
 end
 end
 alt square
+c->o: mqtt://<sector>/servos/<type>/<id>/set: <desired_state>, <seconds>
 o->m: query
 m-->o: <initial_state>
-o->m: <state>
+o->m: <desired_state>
 note over o
-sleep
+sleep <seconds>
 end note
 o->m: <initial_state>
 end
 
 alt pulse
+c->o: mqtt://<sector>/servos/<type>/<id>/set: \n<desired_state_a>, <seconds_a>, <desired_state_b>, <seconds_b>, <iteration>
 o->m: query
 m-->o: <initial_state>
-loop whished num of pulse
-o->m: <state_a>
+loop iteration
+o->m: <desired_state_a>
 note over o
-sleep
+sleep <seconds_a>
 end note
-o->m: <state_b>
+o->m: <desired_state_b>
 note over o
-sleep
+sleep <seconds_b>
 end note
 end
 o->m: <initial_state>

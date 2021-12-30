@@ -2,15 +2,11 @@ pollicino:
   sensors:
     '0':
       type: moisture
-      gpio:
-        pin: 10
-        mode: BMD
+      pin_input: 10
       polling_seconds: 1
     '1':
       type: photoresistor
-      gpio:
-        pin: 10
-        mode: BMD
+      pin_input: 10
       polling_seconds: 2
     '2':
       type: meteo
@@ -19,8 +15,7 @@ pollicino:
     '0':
       type: waterpump
       gpio:
-        pin: 10
-        mode: BMD
+        pin_output: 10
       off_after_min: 60
   controllers:
       - type: scheduler

@@ -16,18 +16,19 @@ Here some of the component and tools used to give you an idea of what you will f
 - Ansible
 - Docker
 - Python
-- Mac OSX
+- ...
 
-# If you have just 5 minutes ...
+# If you have just some minutes...
 
-### Prerequisites
+## Prerequisites
 Ensure you have installed
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [MQTT Explorer](http://mqtt-explorer.com/)
 - [Docker](https://docs.docker.com/get-docker/)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-### Run simulation
+## Run simulation
+
 1) Start machines on docker
 
 On **Terminal 1**
@@ -63,9 +64,9 @@ CTRL+c
 ```
 
 # If you have more time...
-# Architecture
+# Software
 
-## Flow
+## Architecture
 
 ![archi](docs/flow.png)
 
@@ -78,16 +79,11 @@ CTRL+c
 
 - The **broker** role is to provide a scalable and realilable message bus used by the oher component to communicate.
 
-## Components
-
-![archi](docs/pollicino.png)
-
-
-### Broker  
-In order to make the component communicating the protocol choosed in [MQTT](https://mqtt.org/) that can be considered the standard in the IoT communication.   
-MQTT is a pub/sub protocol based on the concept and desing of topic to be publisced by a producer and subscribed by consumer.I strongly suggest you to have a look to this [link](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) , it explains quite well how to perform the first step into the deisgn part of MQTT Topic.
-#### Topic
-Defining the topic grammar is crucial in order to be able to govern the message exchange in a clear way. Here below the selected ones:
+## Message Bus  
+The protocol choosed to make the components exchanging messages is [MQTT](https://mqtt.org/). It can be considered the standard in the IoT communication.   
+MQTT is a pub/sub protocol and its main elementis the topic to be published by a producer and subscribed by consumer. I strongly suggest you to have a look to this [link](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) , it explains quite well how to perform the first step into the deisgn part of MQTT Topic.
+### Topic
+Defining the topic grammar is crucial in order to be able to govern the message exchange in a clear way. Here below the topic's pattern designed:
     
     PATTERN_STATUS = '{sector}/{category}/{type}/{dev_id}'
     PATTERN_CMD_PUB = '{sector}/{category}/{type}/{dev_id}/set'
@@ -100,34 +96,47 @@ Defining the topic grammar is crucial in order to be able to govern the message 
 
 Note that all sensors and servos (*category*) operate in a certain *sector* and they are identifed by a *type* and an *id*
 
-### Sensor
+## Components
+
+![archi](docs/pollicino.png)
+
+
+## Sensor
 The sensors needs to transmit at regular time status of a given device. It is possible to set **polling_in_second** 
 
+## Controller
 
-
-### Controller
-
-
-
-### Servos
-
-### Configuration
-All the components can be confiured by specifing behavior or hardware connection in a configuration file.
-
-
-
-
-## Simulation
-I decide to test all the entrire application before finalizing the hardware connestion and soldering. The idea is to use 
-- docker to instanc
+## Servos
 
 # Hardware
-## Electric schema
 
-# Put all together
-### Next steps
+This is the hardware used:
+- 3 Raspberry PI Zero W
+- Raspberry Pi Relay Hat 5V
+- Soil Moisture sensors (resistive) + ADC
+- 2 FPD-270A solenoid valve 12V
+- Router TP link TL-MR3020
+- NP7-12 FR 1v Volte BAttery
 
-### References
+## Raspberry PI Zero W
+
+## Moisture Sensors
+
+## GPIO Soldier
+
+# Network
+
+# Putting all together
+
+# Simulation
+I decide to test all the entire application before finalizing the hardware connestion and soldering. The idea is to use 
+- docker to instance
+
+
+
+# Next steps and on going tasks
+
+# References
 
 
 
@@ -256,6 +265,8 @@ https://schedule.readthedocs.io/en/stable/examples.html#pass-arguments-to-a-job
 https://crontab.guru/#0_7_*_2_*
 
 https://nazrul.me/2019/07/17/ssh-agent-forward-into-docker-container-on-macos/
+
+https://pinout.xyz/pinout/pin11_gpio17
 
 
 ansible-playbook setup.yaml -i hosts_emu -v
