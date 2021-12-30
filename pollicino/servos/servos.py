@@ -1,9 +1,9 @@
 import json
 import logging
 
-from helpers import broker
-from helpers import topic
-from servos import loader
+from pollicino.helpers import broker
+from pollicino.helpers import topic
+from pollicino.servos import loader
 
 
 def on_connect(client, userdata, flags, rc):

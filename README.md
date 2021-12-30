@@ -97,7 +97,13 @@ CTRL+c
 
 - The **broker** role is to provide a scalable and realilable message bus used by the oher component to communicate.
 
-## Message Bus  
+
+
+## Components
+
+![archi](docs/pollicino.png)
+
+## Message bus and broker
 The protocol choosed to make the components exchanging messages is [MQTT](https://mqtt.org/). It can be considered the standard in the IoT communication.   
 MQTT is a pub/sub protocol and its main elementis the topic to be published by a producer and subscribed by consumer. I strongly suggest you to have a look to this [link](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) , it explains quite well how to perform the first step into the deisgn part of MQTT Topic.
 ### Topic
@@ -115,11 +121,6 @@ Defining the topic grammar is crucial in order to be able to govern the message 
 Note that all sensors and servos (*category*) operate in a certain *sector* and they are identifed by a *type* and an *id*
 
 
-## Components
-
-![archi](docs/pollicino.png)
-
-
 ## Sensor
 The sensors needs to transmit at regular time status of a given device. It is possible to set **polling_in\_second** 
 
@@ -129,26 +130,25 @@ The sensors needs to transmit at regular time status of a given device. It is po
 
 ## Project Organization
 
-```bash
-├── ansible           <- ansible roles to automatize tasks across multiple machienes
-├── broker            
-├── controller
+```shell
+├── ansible                    <--- taks automation 
 ├── docs
-├── emu
-├── helpers
-├── sensors
-├── servos
-├── venv
-├── LICENSE.md
-├── MANIFEST.in
-├── README.md
-├── __init__.py
-├── _config.yml
-├── broker.sh
+├── emu                        <--- used for emulation purpose only ( Docker)
+│   ├── Dockerfile
+│   ├── docker-compose.yaml
+├── pollicino                  <--- source code
+│   ├── __pycache__
+│   ├── broker
+│   ├── controller
+│   ├── helpers
+│   ├── sensors
+│   ├── servos
+│   └── __init__.py
+├── broker.sh                  <--- scripts to easy the start/stop/state opearation of each component
 ├── controller.sh
 ├── daemon_broker.sh
-├── pollicino.py
-├── pollicino.yaml
+├── pollicino.py               <--- main
+├── pollicino.yaml             <--- configuration (topology , gpio...)
 ├── requirements.txt
 ├── sensors.sh
 ├── servos.sh
@@ -165,8 +165,6 @@ I decide to test all the entire application before finalizing the hardware conne
 
 # Hardware <a name="hardware"></a>
 
-
-This is the hardware used:
 - 3 Raspberry PI Zero W
 - Raspberry Pi Relay Hat 5V
 - Soil Moisture sensors (resistive) + ADC
@@ -176,17 +174,20 @@ This is the hardware used:
 
 ## Raspberry PI Zero W
 
+### General Purpose IO: GPIO
+![gpio](docs/GPIO.jpg)
+
+
 ## Moisture Sensors
 
-## GPIO Soldier
+
+
 
 # Network
 
-# Putting all together <a name="all"></a>
+# Up and running <a name="all"></a>
 
 
-
-# Next steps and on going tasks <a name="next"></a>
 
 # Contributing <a name="contributing"></a>
 
