@@ -1,6 +1,6 @@
 try:
     from RPi import GPIO
-except:
+except BaseException:
     from fake_rpi.RPi import GPIO
     from fake_rpi import toggle_print
 
@@ -45,7 +45,7 @@ def set(mode, pin, value):
         GPIO.setup(pin, GPIO.OUT)
         GPIO.output(pin, value)
         sleep(0.033)
-    except:
+    except BaseException:
         raise ValueError("GPIO Pin {0} unknown".format(pin))
         GPIO.cleanup()
 
@@ -60,5 +60,5 @@ def get(mode, pin):
     try:
         GPIO.setup(pin, GPIO.IN)
         return GPIO.input(pin)
-    except:
+    except BaseException:
         raise ValueError("GPIO Pin {0} unknown".format(pin))

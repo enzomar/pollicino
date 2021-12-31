@@ -52,9 +52,11 @@ def load(configuration_file):
                 for ctrl in ctrls_config:
                     c_type = ctrl['type']
                     if c_type == "scheduler":
-                        list_of_ctrls.extend(load_scheduler(sector, c_type, ctrl['links']))
+                        list_of_ctrls.extend(load_scheduler(
+                            sector, c_type, ctrl['links']))
                     else:
-                        list_of_ctrls.extend(load_standard(sector, c_type, ctrl['links']))
+                        list_of_ctrls.extend(load_standard(
+                            sector, c_type, ctrl['links']))
         except yaml.YAMLError as exc:
             logging.info(exc)
     return list_of_ctrls

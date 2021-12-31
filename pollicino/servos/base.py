@@ -32,7 +32,14 @@ class Base(object):
             if self.process.is_alive():
                 return
 
-        self.process = Process(target=self._update, args=(state_a, seconds_a, state_b, seconds_b, repetition))
+        self.process = Process(
+            target=self._update,
+            args=(
+                state_a,
+                seconds_a,
+                state_b,
+                seconds_b,
+                repetition))
         self.process.start()
 
     def square(self, state_a, seconds_a):
@@ -48,10 +55,14 @@ class Base(object):
         # update the sensor to amplitude
         initial_state = self._hw_get()
         for n in range(repetition):
-            logging.debug("[{0}] set {1} for {2}s".format(n, state_a, seconds_a), flush=True)
+            logging.debug(
+                "[{0}] set {1} for {2}s".format(
+                    n, state_a, seconds_a), flush=True)
             self._hw_set(state_a)
             time.sleep(seconds_a)
-            logging.debug("[{0}] set {1} for {2}s".format(n, state_b, seconds_b), flush=True)
+            logging.debug(
+                "[{0}] set {1} for {2}s".format(
+                    n, state_b, seconds_b), flush=True)
             self._hw_set(state_b)
             time.sleep(seconds_b)
         self._hw_set(initial_state)

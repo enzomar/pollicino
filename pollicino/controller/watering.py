@@ -49,7 +49,8 @@ def on_message(client, userdata, msg):
         cmd = handle_humidity(value, threshold)
     if cmd:
         client.publish(topic_pub, cmd)
-        logging.info("{0}:{1} -> {2}:{3}".format(msg.topic, value, topic_pub, str(cmd)))
+        logging.info("{0}:{1} -> {2}:{3}".format(msg.topic,
+                     value, topic_pub, str(cmd)))
     else:
         logging.info("{0}:{1} -> None".format(msg.topic, value))
 

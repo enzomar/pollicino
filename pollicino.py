@@ -53,6 +53,7 @@ def run(mode, topology, broker_host):
 		logging.info("Run Controller")
 		controller.run(topology)
 
+
 if __name__ == "__main__":
 	mode, topology, broker_host = parse_input()
 	run(mode, topology, broker_host)

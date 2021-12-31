@@ -22,7 +22,7 @@ def load_sensor(s_id, s_config, sector):
     s_pin_input = None
     try:
         s_pin_input = s_config['pin_input']
-    except:
+    except BaseException:
         pass
     s_class = SENSORS_MAP[s_type.lower()]
     s_instance = s_class(s_id)
@@ -43,7 +43,8 @@ def load(configuration_file):
                 for s_id in sensors_config:
                     s_config = sensors_config[s_id]
                     s_instance, s_topic = load_sensor(s_id, s_config, sector)
-                    list_of_sensors.append({'instance': s_instance, 'topic': s_topic})
+                    list_of_sensors.append(
+                        {'instance': s_instance, 'topic': s_topic})
         except yaml.YAMLError as exc:
             logging.info(exc)
     return list_of_sensors

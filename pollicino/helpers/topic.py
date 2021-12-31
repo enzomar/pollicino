@@ -5,13 +5,19 @@ PATTERN_CMD_SUB = '{sector}/{category}/+/+/set'
 
 
 def status(dev_id, dev_name, category, sector):
-    return PATTERN_STATUS.format(sector=sector,
-                                 category=category, dev_name=dev_name, dev_id=dev_id)
+    return PATTERN_STATUS.format(
+        sector=sector,
+        category=category,
+        dev_name=dev_name,
+        dev_id=dev_id)
 
 
 def cmd_pub(dev_id, dev_name, category, sector):
-    return PATTERN_CMD_PUB.format(sector=sector,
-                                  category=category, dev_name=dev_name, dev_id=dev_id)
+    return PATTERN_CMD_PUB.format(
+        sector=sector,
+        category=category,
+        dev_name=dev_name,
+        dev_id=dev_id)
 
 
 def cmd_sub(category, sector):

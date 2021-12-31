@@ -1,6 +1,6 @@
 try:
     from pollicino.sensors import base
-except:
+except BaseException:
     from . import base
 
 import json

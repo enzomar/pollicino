@@ -28,7 +28,8 @@ def load(configuration_file):
                 for s_id in servos_config:
                     s_config = servos_config[s_id]
                     s_instance, s_topic = load_servos(s_id, s_config, sector)
-                    servos_pool[s_id] = {'instance': s_instance, 'topic': s_topic}
+                    servos_pool[s_id] = {
+                        'instance': s_instance, 'topic': s_topic}
         except yaml.YAMLError as exc:
             logging.info(exc)
     return servos_pool

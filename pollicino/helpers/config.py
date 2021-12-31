@@ -34,7 +34,7 @@ if __name__ == "__main__":
     print(json.dumps(load("../pollicino.yaml")))
 
 """
-sectors: 
+sectors:
   - id: pollicino
     sensors:
         - id: 0
@@ -63,7 +63,7 @@ sectors:
     controllers:
       - type: watering
       	links:
-        	- sensors_id: 0 
+        	- sensors_id: 0
         	  servo_id: 0
         	  threshold: 5
 

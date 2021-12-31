@@ -4,7 +4,7 @@ from . import base
 
 try:
     import RPi.GPIO as GPIO
-except:
+except BaseException:
     pass
 
 
