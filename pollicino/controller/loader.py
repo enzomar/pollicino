@@ -55,8 +55,8 @@ def load(configuration_file):
                         list_of_ctrls.extend(load_scheduler(
                             sector, c_type, ctrl['links']))
                     else:
-                        list_of_ctrls.extend(load_standard(
-                            sector, c_type, ctrl['links']))
+                        list_of_ctrls.extend(load_standard( sector, c_type, ctrl['links']))
         except yaml.YAMLError as exc:
             logging.info(exc)
+    logging.debug(list_of_ctrls)
     return list_of_ctrls

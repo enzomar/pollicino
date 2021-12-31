@@ -6,7 +6,8 @@ from pollicino.helpers import topic
 
 
 def handle_humidity(value, threshold):
-    # if the ground is dry, it is ime to water else stop the water
+    logging.debug("handle_humidity: {0}, {1}".format(value, threshold))
+    # if it is not humid, it is time to put some fog
     cmd = command.switch(0)
     if value < int(threshold):
         cmd = command.square(1, 10)
@@ -14,7 +15,8 @@ def handle_humidity(value, threshold):
 
 
 def handle_moisture(value, threshold):
-    # if the ground is dry, it is ime to water else stop the water
+    logging.debug("handle_moisture: {0}, {1}".format(value, threshold))
+    # if the ground is dry, it is time to water else stop the water
     cmd = command.switch(0)
     if value < int(threshold):
         cmd = command.square(1, 10)
@@ -22,6 +24,7 @@ def handle_moisture(value, threshold):
 
 
 def handle_meteo(value, threshold):
+    logging.debug("handle_meteo: {0}, {1}".format(value, threshold))
     # if it is raining, stop the water
     cmd = None
     if value == 'Clouds' or value == 'Rain':
@@ -36,6 +39,7 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, msg):
+    logging.debug(msg.topic)
     value = float(msg.payload.decode())
     topic_pub = userdata['topic_pub']
     threshold = userdata['threshold']

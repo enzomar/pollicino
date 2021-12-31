@@ -1,7 +1,7 @@
 PATTERN_STATUS = '{sector}/{category}/{dev_name}/{dev_id}'
 # PATTERN_STATUS_SUB    ='{sector}/{category}/#'
 PATTERN_CMD_PUB = '{sector}/{category}/{dev_name}/{dev_id}/set'
-PATTERN_CMD_SUB = '{sector}/{category}/+/+/set'
+PATTERN_CMD_SUB = '{sector}/{category}/{dev_name}/+/set'
 
 
 def status(dev_id, dev_name, category, sector):
@@ -20,8 +20,8 @@ def cmd_pub(dev_id, dev_name, category, sector):
         dev_id=dev_id)
 
 
-def cmd_sub(category, sector):
-    return PATTERN_CMD_SUB.format(sector=sector, category=category)
+def cmd_sub(dev_name, category, sector):
+    return PATTERN_CMD_SUB.format(sector=sector, category=category, dev_name=dev_name)
 
 
 def extract(topic):
