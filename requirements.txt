@@ -1,6 +1,6 @@
-paho-mqtt==1.6.1
+paho-mqtt
 PyYAML
-requests==2.26.0
+requests
 jsonschema
 apscheduler
 croniter

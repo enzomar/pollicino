@@ -1,17 +1,15 @@
 import unittest
-import gpio
 
+import gpio
 
 ## BOARD = PHISICAL PIN NUMBER
 ## BCM = LOGICAL GPIO NUMBER
 ## ie. BOARD 3 == GPIO 2
 
-from fake_rpi import toggle_print
-
-
 PIN_BMC = 24
 PIN_BOARD = 18
 PIV_VALUE = 1
+
 
 class TestGPIO(unittest.TestCase):
     def test_set_get_board_ok(self):

@@ -63,6 +63,8 @@ ansible-playbook setup.yaml -i hosts_emu
 ansible-playbook start.yaml -i hosts_emu
 ```
 
+![sim-setup](docs/sim_setup.png)
+
 3) Open MQTT Explorer and create a new connection ( host = localhost, port = 1883)
 
 On **MQQT Explorer**
@@ -90,12 +92,12 @@ CTRL+c
 
 - The **sensor** it is in charge to observe regularly the phisical environment and publish state and measurement
 - The **controller** goal is to read the input from the sensors and, after applying a certain logic, it will eventually send commands to the servo to change the state of the environment. It is also possible to *schedule* commands.
-- The objective of the **servo** is to execute the command sent by the controller by activating an engine, solenoid valve or any other phisical device. It has triggers:
-    - *Switch*: it is basic binary on / off cmmands (ie. shiwtgin on/off a light)
-    - *Square*: Is will maitain a certain state for a given time (ie. open water for a given amout of time)
+- The objective of the **servo** is to execute the command sent by the controller by activating an engine, solenoid valve or any other phisical device. Can be triggered as:
+    - *Switch*: it is basic binary on / off cmmands (ie. swithcing on/off a light)
+    - *Square*: It will maitain a certain state for a given time (ie. open water for a given amount of time) and then go back to the initial state, whatever it was
     - *Pulse*: it will change state multiple times over time 
 
-- The **broker** role is to provide a scalable and realilable message bus used by the oher component to communicate.
+- The **broker** role is to provide a scalable and realilable message bus used by above components to communicate.
 
 
 
@@ -131,7 +133,7 @@ The sensors needs to transmit at regular time status of a given device. It is po
 ## Project Organization
 
 ```shell
-├── ansible                    <--- taks automation 
+├── ansible                    <--- tasks automation 
 ├── docs
 ├── emu                        <--- used for emulation purpose only ( Docker)
 │   ├── Dockerfile
@@ -158,9 +160,12 @@ The sensors needs to transmit at regular time status of a given device. It is po
 └── stop.sh
 ```
 
-# Simulation
-I decide to test all the entire application before finalizing the hardware connestion and soldering. The idea is to use 
-- docker to instance
+# Emulation
+I decide to test all the entire application before finalizing the hardware connestion and soldering. The idea is to use:
+ 
+- docker to run a basic unix image, emulating the rraspberry Pi OS
+- ansible to perform the setup and execution
+
 
 
 # Hardware <a name="hardware"></a>
@@ -174,14 +179,44 @@ I decide to test all the entire application before finalizing the hardware conne
 
 ## Raspberry PI Zero W
 
-### General Purpose IO: GPIO
-![gpio](docs/GPIO.jpg)
+### GPIO
+![gpio](docs/raspberry-pi-zero.jpeg)
+
+GPIO (General-purpose input/output) are hardware pins rows which locate in the top of RPi board. Raspberry Pi use  GPIO pins to interact with other hardware including sensors, motors, and many many other peripheral devices.
+
+
+There are two MODE to select the pin on the GPIO
+
+- BOARD: This type of pin numbering refers 
+to the number of the pin in the plug, 
+i.e, the numbers printed on the board, 
+for example, P1. The advantage of this type 
+of numbering is, it will not change even though 
+the version of board changes.
+
+- BCM: The BCM option refers to the pin 
+by “Broadcom SOC Channel. They signify the 
+Broadcom SOC channel designation. The BCM 
+channel changes as the version number changes. 
+
+In the project the **BOARD** mode is used, even if it is possible to selecte the BCM one
+
+If you want to see the schema and stus of the pin on your raspberry PI wou can use the following metods:
+
+```bash
+gpio readall
+```
+![gpio](docs/gpio_readall.png)
+
+```bash
+pinout
+```
+![gpio](docs/pinout.png)
 
 
 ## Moisture Sensors
 
-
-
+## Electro
 
 # Network
 
@@ -311,6 +346,8 @@ https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/
 https://www.raspberryitaly.com/pigarden-e-pigardenweb-realizza-il-tuo-impianto-di-irrigazione-con-raspberry-pi/
 
 https://www.youtube.com/watch?v=51dg2MsYHns
+
+https://www.lejubila.net/2015/10/impianto-di-irrigazione-con-raspberry-pi-l-elettrovalvola-seconda-parte/
 
 https://mtlynch.io/greenpithumb/
 

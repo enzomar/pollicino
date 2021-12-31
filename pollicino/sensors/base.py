@@ -1,5 +1,7 @@
+import logging
 import random
-import pollicino.helpers.gpio
+
+from pollicino.helpers import gpio
 
 
 class Base(object):
@@ -11,4 +13,8 @@ class Base(object):
         self.polling_seconds = 1
 
     def fetch(self):
-        return gpio.get(self.gpio_mode, self.pin_input)
+        try:
+            return gpio.get(self.gpio_mode, self.pin_input)
+        except Exception as ex:
+            logging.error("{0}".format(ex))
+            return random.randint(0, 100)

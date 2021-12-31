@@ -2,11 +2,12 @@ import logging
 
 import yaml
 
-from pollicino.controller.watering import Watering
+from pollicino.controller.fogger import Fogger
 from pollicino.controller.scheduler import Scheduler
+from pollicino.controller.watering import Watering
 from pollicino.helpers import topic
 
-CTRL_MAP = {'watering': Watering, 'scheduler': Scheduler}
+CTRL_MAP = {'watering': Watering, 'scheduler': Scheduler, 'fogger': Fogger}
 
 
 def load_standard(sector, c_type, links):

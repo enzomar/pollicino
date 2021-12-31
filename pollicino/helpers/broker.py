@@ -1,17 +1,19 @@
-import re
-
 MOSQUITTO_CONF = "broker/mosquitto.conf"
 REGEX = '^listener ([0-9]+) ([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)'
+import logging
+import time
+
 import paho.mqtt.client as mqtt
-import logging, time
+
 
 class Singleton(type):
     _instances = {}
+
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
-        
+
 
 class Broker(metaclass=Singleton):
     __metaclass__ = Singleton
@@ -40,5 +42,3 @@ class Broker(metaclass=Singleton):
                 logging.info("Retring in {0} seconds".format(5))
                 time.sleep(5)
         return client
-
-

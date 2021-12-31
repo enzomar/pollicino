@@ -2,20 +2,30 @@ pollicino:
   sensors:
     '0':
       type: moisture
-      pin_input: 10
+      pin_input: 24
       polling_seconds: 1
     '1':
       type: photoresistor
-      pin_input: 10
+      pin_input: 24
       polling_seconds: 2
     '2':
-      type: meteo
+      type: temperature
+      pin_input: 24
+      polling_seconds: 4
+    '3':
+      type: humidity
+      pin_input: 24
       polling_seconds: 4
   servos:
     '0':
       type: waterpump
       gpio:
         pin_output: 10
+      off_after_min: 60
+    '1':
+      type: fogger
+      gpio:
+        pin_output: 12
       off_after_min: 60
   controllers:
       - type: scheduler
@@ -31,9 +41,14 @@ pollicino:
             sensor_type: moisture 
             servo_id: 0
             servo_type: waterpump
-            threshold: 5 #excluded
+            threshold: 0
           - sensor_id: 2
             sensor_type: meteo 
             servo_id: 0
             servo_type: waterpump
             threshold: 'rain'
+          - sensor_id: 0
+            sensor_type: humidity 
+            servo_id: 0
+            servo_type: fogger
+            threshold: 20

@@ -1,15 +1,19 @@
 import yaml
 
 from pollicino.helpers import topic
+from pollicino.sensors.humidity import Humidity
 from pollicino.sensors.meteo import Meteo
 from pollicino.sensors.moisture import Moisture
 from pollicino.sensors.photoresistor import Photoresistor
+from pollicino.sensors.temperature import Temperature
 
 DEFAULT_POLLING_SECONDS = 1
 
 SENSORS_MAP = {'moisture': Moisture,
                'photoresistor': Photoresistor,
-               'meteo': Meteo}
+               'meteo': Meteo,
+               'temperature': Temperature,
+               'humidity': Humidity}
 
 
 def load_sensor(s_id, s_config, sector):

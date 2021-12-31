@@ -1,0 +1,38 @@
+@startuml
+object sensor_a #Violet {
+  type = "moisture"
+  category = "sensor"
+}
+
+object sensor_b #Violet {
+  type = "temperature"
+  category = "sensor"
+}
+
+object sensor_c #Violet {
+  type = "humidity"
+  category = "sensor"
+}
+
+diamond a 
+diamond b
+diamond c
+
+object servo_a #Lightblue{
+  type = "waterpump"
+  category = "servo"
+}
+
+object servo_b #Lightblue{
+  type = "fogger"
+  category = "servo"
+}
+
+sensor_a  -d-> a
+sensor_b  -d-> b
+sensor_c  -d-> c
+
+a-d->servo_a: >5 
+b-d->servo_b: 25
+c-d->servo_b: >12
+@enduml

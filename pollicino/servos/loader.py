@@ -3,9 +3,10 @@ import logging
 import yaml
 
 from pollicino.helpers import topic
+from pollicino.servos.fogger import Fogger
 from pollicino.servos.waterpump import Waterpump
 
-SERVO_MAP = {'waterpump': Waterpump}
+SERVO_MAP = {'waterpump': Waterpump, 'fogger': Fogger}
 
 
 def load_servos(s_id, s_config, sector):

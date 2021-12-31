@@ -5,6 +5,14 @@ from pollicino.helpers import command
 from pollicino.helpers import topic
 
 
+def handle_humidity(value, threshold):
+    # if the ground is dry, it is ime to water else stop the water
+    cmd = command.switch(0)
+    if value < int(threshold):
+        cmd = command.square(1, 10)
+    return cmd
+
+
 def handle_moisture(value, threshold):
     # if the ground is dry, it is ime to water else stop the water
     cmd = command.switch(0)
@@ -37,6 +45,8 @@ def on_message(client, userdata, msg):
         cmd = handle_moisture(value, threshold)
     if sensor_type == "meteo":
         cmd = handle_meteo(value, threshold)
+    if sensor_type == "humidity":
+        cmd = handle_humidity(value, threshold)
     if cmd:
         client.publish(topic_pub, cmd)
         logging.info("{0}:{1} -> {2}:{3}".format(msg.topic, value, topic_pub, str(cmd)))

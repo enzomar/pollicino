@@ -10,8 +10,11 @@ from pollicino.helpers import broker
 import argparse
 import logging
 
-logging.basicConfig(level=logging.DEBUG, 
-	format='%(asctime)s - %(process)d - %(processName)s - %(levelname)s - %(message)s')
+LOG_FORMAT_1 = '[%(asctime)s - %(process)d - %(processName)s - %(levelname)s - %(pathname)s:%(lineno)d] %(message)s'
+LOG_FORMAT_2 = '[%(asctime)s] p%(process)s %(pathname)s:%(lineno)d} %(levelname)s - %(message)s , %m-%d %H:%M:%S'
+
+
+logging.basicConfig(level=logging.DEBUG, format=LOG_FORMAT_1)
 
 
 DEFAUL_TOPOLOGY_FILE = "pollicino.yaml"

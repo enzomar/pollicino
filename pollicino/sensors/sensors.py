@@ -10,6 +10,7 @@ from pollicino.sensors import loader
 def read_and_publish(sensor):
     client = broker.Broker().connect()
     try:
+        logging.info("Starting {0}".format(sensor['instance'].type))
         while True:
             s_instance = sensor['instance']
             measure = s_instance.fetch()

@@ -24,7 +24,6 @@ class Scheduler(object):
     def run(self):
         logging.info("Scheduler")
         cron_trigger = CronTrigger.from_crontab(self.config['start'], 'UTC')
-        print(cron_trigger)
         if self.config['duration_seconds']:
             self.scheduler.add_job(
                 func=command.square,

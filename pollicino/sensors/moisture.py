@@ -1,5 +1,5 @@
-from pollicino.sensors import base
 from pollicino.helpers import gpio
+from pollicino.sensors import base
 
 
 class Moisture(base.Base):

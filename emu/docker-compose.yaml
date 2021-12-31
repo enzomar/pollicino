@@ -33,7 +33,7 @@ services:
 
   sensor_c:
     build: .
-    container_name: "sensor_c"  
+    container_name: "sensor_c"
     tty: true
     volumes:
       - ~/.ssh:/root/.ssh:ro
