@@ -1,0 +1,10 @@
+pollicino:
+  servos:
+    '0':
+      type: waterpump
+      gpio:
+        pin_output: 24
+      off_after_min: 60
+
+
+

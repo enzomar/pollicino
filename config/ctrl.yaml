@@ -1,0 +1,27 @@
+pollicino:
+  controllers:
+      - type: scheduler
+        links:
+          - start: "0 6 * * *"
+            duration_seconds: "30"
+            state: 1
+            servo_id: 0
+            servo_type: waterpump
+      - type: watering
+        links:
+          - sensor_id: 0
+            sensor_type: moisture 
+            servo_id: 0
+            servo_type: waterpump
+            threshold: 0
+          - sensor_id: 2
+            sensor_type: meteo 
+            servo_id: 0
+            servo_type: waterpump
+            threshold: 'rain'
+          - sensor_id: 3
+            sensor_type: humidity 
+            servo_id: 0
+            servo_type: fogger
+            threshold: 20
+

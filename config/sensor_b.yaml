@@ -1,0 +1,8 @@
+pollicino:
+  sensors:
+    '2':
+      type: meteo
+      pin_input: 24
+      polling_seconds: 4
+
+  

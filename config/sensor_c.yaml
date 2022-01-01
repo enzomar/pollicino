@@ -1,0 +1,11 @@
+pollicino:
+  sensors:
+    '3':
+      type: humidity
+      pin_input: 24
+      polling_seconds: 4
+    '4':
+      type: temperature
+      pin_input: 24
+      polling_seconds: 4
+  

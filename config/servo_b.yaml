@@ -1,0 +1,7 @@
+pollicino:
+  servos:
+    '1':
+      type: fogger
+      gpio:
+        pin_output: 24
+      off_after_min: 60

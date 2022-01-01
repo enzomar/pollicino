@@ -1,0 +1,12 @@
+pollicino:
+  sensors:
+    '0':
+      type: moisture
+      pin_input: 24
+      polling_seconds: 1
+    '1':
+      type: photoresistor
+      pin_input: 24
+      polling_seconds: 2
+    
+
