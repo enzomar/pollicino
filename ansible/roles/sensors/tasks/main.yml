@@ -7,7 +7,7 @@
 
 # tasks file for sensors
 - name: Start
-  command: chdir=pollicino ./sensors.sh -b broker
+  command: chdir=pollicino ./sensors.sh -b broker -a
   register: output
 
 # tasks file for sensors

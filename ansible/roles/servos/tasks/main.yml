@@ -7,7 +7,7 @@
 
 # tasks file for servos
 - name: Start
-  command: chdir=pollicino ./servos.sh -b broker
+  command: chdir=pollicino ./servos.sh -b broker -a
   register: output
 
 # tasks file for servos
