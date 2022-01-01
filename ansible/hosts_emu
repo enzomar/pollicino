@@ -1,14 +1,14 @@
 [sensors]
-sensor_a 
-sensor_b 
-sensor_c
+sensor-a 
+sensor-b 
+sensor-c
 
 [sensors:vars]
 ansible_connection=docker
 
 [servos]
-servo_a 
-servo_b 
+servo-a 
+servo-b 
 
 [servos:vars]
 ansible_connection=docker

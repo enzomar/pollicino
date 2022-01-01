@@ -2,6 +2,11 @@
 -  hosts: all 
    gather_facts: no
    tasks:
+      - name: Check for hostname variable presence
+        fail:
+             msg: "Hostname variable is not set!"
+        when: inventory_hostname|default(False) == False
+
       - name: Check state
         command: chdir=pollicino ./state.sh
         register: output

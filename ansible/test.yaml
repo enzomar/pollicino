@@ -1,0 +1,7 @@
+--- 
+-  hosts: all 
+   gather_facts: no
+   become: True
+   tasks:
+     - name: set hostname to {{ inventory_hostname }}
+       command: hostname {{ inventory_hostname }}

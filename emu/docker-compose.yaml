@@ -18,7 +18,7 @@ services:
 
   sensor_a:
     build: .
-    container_name: "sensor_a"
+    container_name: "sensor-a"
     tty: true
     volumes:
       - ~/.ssh:/root/.ssh:ro
@@ -26,28 +26,28 @@ services:
 
   sensor_b:
     build: .
-    container_name: "sensor_b"
+    container_name: "sensor-b"
     tty: true
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
   sensor_c:
     build: .
-    container_name: "sensor_c"
+    container_name: "sensor-c"
     tty: true
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
   servo_a:
     build: .
-    container_name: "servo_a"
+    container_name: "servo-a"
     tty: true
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
   servo_b:
     build: .
-    container_name: "servo_b"
+    container_name: "servo-b"
     tty: true
     volumes:
       - ~/.ssh:/root/.ssh:ro
