@@ -16,6 +16,10 @@ pollicino:
       type: humidity
       pin_input: 24
       polling_seconds: 4
+    '4':
+      type: temperature
+      pin_input: 24
+      polling_seconds: 4
   servos:
     '0':
       type: waterpump
@@ -52,3 +56,4 @@ pollicino:
             servo_id: 0
             servo_type: fogger
             threshold: 20
+

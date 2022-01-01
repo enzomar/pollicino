@@ -5,3 +5,4 @@ jsonschema
 apscheduler
 croniter
 fake-rpi
+getmac
