@@ -1,3 +1,7 @@
+- name: Set hostname
+    hostname:
+     name: {{ inventory_hostname }}
+
 - name: Clone/Update Pollicino repository
   git:
     repo: git@github.com:enzomar/pollicino.git
