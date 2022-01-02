@@ -22,16 +22,16 @@ Here some of the component and tools used to give you an idea of what you will f
 
 ### Table of Contents
 
-1. [If you have just some minutes...](#some_minutes)
+1. [How to ...](#howto)
 2. [Software and flow](#software) (Almost finished)
 3. [Hardware](#hardware) (Just started)
 4. [Up and running](#all) (To do)
-6. [Contributing and next step](#contributing)
-7. [References](#references)
+5. [Contributing and next step](#contributing)
+6. [References](#references)
 
 <hr/>
+# How to <a name="howto"></a>
 
-# If you have just some minutes... <a name="some_minutes"></a>
 
 ## Prerequisites
 Ensure you have installed
@@ -41,7 +41,7 @@ Ensure you have installed
 - [Docker](https://docs.docker.com/get-docker/)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-## Run simulation
+# Run simulation
 
 1) Start machines on docker
 
@@ -83,7 +83,36 @@ On **Terminal 1**
 CTRL+c
 ```
 
-# If you have more time... 
+## Configure a new sensor 
+
+Stpes to configure a new sensor to an exising raspeberry pi already part to the pollicino platform 
+
+1. Update the config file 
+```
+config/<existing>.yaml
+```
+2. Restart 
+```
+cd pollicino/ansible;
+ansible-playbook refresh.yaml -i hosts_emu
+```
+
+## Configure a new raspberry pi
+
+1. Connect the rapberry pi to the same network (wifi) of Pollicino
+2. Update the new raspberry pi hostname to <new-hostname> choosen by you
+ ```
+./init_rpi.sh <rpi_ip> <new-hostname>
+```
+3. Create a new config file at ```config/<new-hostname>.yaml``` and populate it with the sensor configuration
+4. Update the host by adding under the rigth group ( or add a new one in case) the <new-hostname>
+5. Restart 
+```
+cd pollicino/ansible;
+ansible-playbook refresh.yaml -i hosts_emu
+```
+
+
 # Software <a name="software"></a>
 
 ## Flow

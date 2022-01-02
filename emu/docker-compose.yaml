@@ -13,12 +13,10 @@ services:
     container_name: "broker"
     tty: true
     hostname: broker
-
     volumes:
       - ~/.ssh:/root/.ssh:ro
     ports:
       - 1883:1883
-      - 9001:9001
 
   sensor-a:
     build: .
