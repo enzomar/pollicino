@@ -13,7 +13,7 @@ def load_servos(s_id, s_config, sector):
     s_type = s_config['type']
     s_class = SERVO_MAP[s_type.lower()]
     s_instance = s_class(s_id)
-    s_topic = topic.cmd_sub(s_type, 'servos', sector)
+    s_topic = topic.cmd_sub(s_id, s_type, 'servos', sector)
     return s_instance, s_topic
 
 

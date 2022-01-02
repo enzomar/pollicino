@@ -1,9 +1,9 @@
 from getmac import get_mac_address as gma
 
-PATTERN_STATUS_PUB = '{sector}/{mac}/{category}/{dev_name}/{dev_id}'
-PATTERN_STATUS_SUB = '{sector}/+/{category}/{dev_name}/{dev_id}'
-PATTERN_CMD_PUB    = '{sector}/{mac}/{category}/{dev_name}/{dev_id}/set'
-PATTERN_CMD_SUB    = '{sector}/+/{category}/{dev_name}/+/set'
+PATTERN_STATUS_PUB = '{sector}/{category}/{dev_name}/{mac}/{dev_id}'
+PATTERN_STATUS_SUB = '{sector}/{category}/{dev_name}/+/{dev_id}'
+PATTERN_CMD_PUB    = '{sector}/{category}/{dev_name}/{dev_id}/set'
+PATTERN_CMD_SUB    = '{sector}/{category}/{dev_name}/{dev_id}/set'
 
 
 def status_pub(dev_id, dev_name, category, sector):
@@ -31,8 +31,12 @@ def cmd_pub(dev_id, dev_name, category, sector):
         dev_id=dev_id)
 
 
-def cmd_sub(dev_name, category, sector):
-    return PATTERN_CMD_SUB.format(sector=sector, mac=gma(), category=category, dev_name=dev_name)
+def cmd_sub(dev_id, dev_name, category, sector):
+    return PATTERN_CMD_SUB.format(sector=sector, 
+        mac=gma(), 
+        category=category, 
+        dev_name=dev_name,
+        dev_id=dev_id)
 
 
 def extract(topic):
