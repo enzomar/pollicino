@@ -25,8 +25,8 @@ Here some of the component and tools used to give you an idea of what you will f
 ### Table of Contents
 
 1. [How to ...](#howto)
-	2. [Simulation](#sim)
-	3. [First run](#first)
+	- [Simulation](#sim)
+	- [First run](#first)
 2. [Software and flow](#software) (Almost finished)
 3. [Hardware](#hardware) (Just started)
 4. [Up and running](#all) (To do)
