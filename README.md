@@ -1,9 +1,11 @@
 
 # Pollicino
 
+<hr />
+
 *"Done is better than perfect!"* and *"Premature optimization is the root of all evil"* are two of the guidelines I am following for my new Christmas project. As almost every year I commit myself to start and hopeful to complete a project and this time I focused on domotic and gardening.
 
-The goal of the project is indeed to provide a way to ***automatize plants  and garden caring***.
+The goal of the project is indeed to provide a way to ***automatize plants  and garden caring*** and probably more.
 
 It is full of projects on internet about this and I do took a lot of inspiration from them but I added some some personalization to enable scalability, customization and plug and play approach.
 
@@ -23,17 +25,20 @@ Here some of the component and tools used to give you an idea of what you will f
 ### Table of Contents
 
 1. [How to ...](#howto)
+	2. [Simulation](#sim)
+	3. [First run](#first)
 2. [Software and flow](#software) (Almost finished)
 3. [Hardware](#hardware) (Just started)
 4. [Up and running](#all) (To do)
-5. [Contributing and next step](#contributing)
+5. [Contributing](#contributing)
 6. [References](#references)
+7. [Next Step](#next)
 
 <hr/>
 # How to <a name="howto"></a>
 
 
-## Prerequisites
+## Prerequisites <a name="pre"></a>
 Ensure you have installed
 
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
@@ -41,7 +46,7 @@ Ensure you have installed
 - [Docker](https://docs.docker.com/get-docker/)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-# Run simulation
+# Run simulation <a name="sim"></a>
 
 1) Start machines on docker
 
@@ -83,22 +88,11 @@ On **Terminal 1**
 CTRL+c
 ```
 
-## Configure a new sensor 
+## Setup and first execution <a name="first"></a>
 
-Stpes to configure a new sensor to an exising raspeberry pi already part to the pollicino platform 
 
-1. Update the config file 
-```
-config/<existing>.yaml
-```
-2. Restart 
-```
-cd pollicino/ansible;
-ansible-playbook refresh.yaml -i hosts_emu
-```
 
-## Configure a new raspberry pi
-
+### Configure a new raspberry pi 
 1. Connect the rapberry pi to the same network (wifi) of Pollicino
 2. Update the new raspberry pi hostname to <new-hostname> choosen by you
  ```
@@ -107,6 +101,20 @@ ansible-playbook refresh.yaml -i hosts_emu
 3. Create a new config file at ```config/<new-hostname>.yaml``` and populate it with the sensor configuration
 4. Update the host by adding under the rigth group ( or add a new one in case) the <new-hostname>
 5. Restart 
+```
+cd pollicino/ansible;
+ansible-playbook refresh.yaml -i hosts_emu
+```
+
+### Configure a new sensor 
+
+Steps to configure a new sensor to an exising raspberry pi already part of the pollicino platform 
+
+1. Update the config file 
+```
+config/<existing>.yaml
+```
+2. Restart 
 ```
 cd pollicino/ansible;
 ansible-playbook refresh.yaml -i hosts_emu
@@ -255,160 +263,115 @@ pinout
 
 # Contributing <a name="contributing"></a>
 
+When contributing to this repository, please first discuss the change you wish to make via issue,
+email, or any other method with the owners of this repository before making a change. 
+
+Please note we have a code of conduct, please follow it in all your interactions with the project.
+
+## Pull Request Process
+
+1. Ensure any install or build dependencies are removed before the end of the layer when doing a 
+   build.
+2. Update the README.md with details of changes to the interface, this includes new environment 
+   variables, exposed ports, useful file locations and container parameters.
+3. Increase the version numbers in any examples files and the README.md to the new version that this
+   Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
+4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you 
+   do not have permission to do that, you may request the second reviewer to merge it for you.
+
+## Code of Conduct
+
+### Our Pledge
+
+In the interest of fostering an open and welcoming environment, we as
+contributors and maintainers pledge to making participation in our project and
+our community a harassment-free experience for everyone, regardless of age, body
+size, disability, ethnicity, gender identity and expression, level of experience,
+nationality, personal appearance, race, religion, or sexual identity and
+orientation.
+
+### Our Standards
+
+Examples of behavior that contributes to creating a positive environment
+include:
+
+* Using welcoming and inclusive language
+* Being respectful of differing viewpoints and experiences
+* Gracefully accepting constructive criticism
+* Focusing on what is best for the community
+* Showing empathy towards other community members
+
+Examples of unacceptable behavior by participants include:
+
+* The use of sexualized language or imagery and unwelcome sexual attention or
+advances
+* Trolling, insulting/derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others' private information, such as a physical or electronic
+  address, without explicit permission
+* Other conduct which could reasonably be considered inappropriate in a
+  professional setting
+
+### Our Responsibilities
+
+Project maintainers are responsible for clarifying the standards of acceptable
+behavior and are expected to take appropriate and fair corrective action in
+response to any instances of unacceptable behavior.
+
+Project maintainers have the right and responsibility to remove, edit, or
+reject comments, commits, code, wiki edits, issues, and other contributions
+that are not aligned to this Code of Conduct, or to ban temporarily or
+permanently any contributor for other behaviors that they deem inappropriate,
+threatening, offensive, or harmful.
+
+### Scope
+
+This Code of Conduct applies both within project spaces and in public spaces
+when an individual is representing the project or its community. Examples of
+representing a project or community include using an official project e-mail
+address, posting via an official social media account, or acting as an appointed
+representative at an online or offline event. Representation of a project may be
+further defined and clarified by project maintainers.
+
+### Enforcement
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported by contacting the project team at [INSERT EMAIL ADDRESS]. All
+complaints will be reviewed and investigated and will result in a response that
+is deemed necessary and appropriate to the circumstances. The project team is
+obligated to maintain confidentiality with regard to the reporter of an incident.
+Further details of specific enforcement policies may be posted separately.
+
+Project maintainers who do not follow or enforce the Code of Conduct in good
+faith may face temporary or permanent repercussions as determined by other
+members of the project's leadership.
+
+### Attribution
+
+This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
+available at [http://contributor-covenant.org/version/1/4][version]
+
+[homepage]: http://contributor-covenant.org
+[version]: http://contributor-covenant.org/version/1/4/
+
 # References <a name="reference"></a>
 
 
+* [https://www.ev3dev.org/docs/tutorials/sending-and-receiving-messages-with-mqtt/](https://www.ev3dev.org/docs/tutorials/sending-and-receiving-messages-with-mqtt/)
+* [http://www.steves-internet-guide.com/client-connections-python-mqtt/](http://www.steves-internet-guide.com/client-connections-python-mqtt/
+)
+* [https://nodered.org/about/](https://nodered.org/about/)
+* [http://mqtt-explorer.com/](http://mqtt-explorer.com/)
+* [https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/)
+* [https://www.raspberryitaly.com/pigarden-e-pigardenweb-realizza-il-tuo-impianto-di-irrigazione-con-raspberry-pi/](https://www.raspberryitaly.com/pigarden-e-pigardenweb-realizza-il-tuo-impianto-di-irrigazione-con-raspberry-pi/)
+* [https://www.youtube.com/watch?v=51dg2MsYHns](https://www.youtube.com/watch?v=51dg2MsYHns)
+* [https://www.lejubila.net/2015/10/impianto-di-irrigazione-con-raspberry-pi-l-elettrovalvola-seconda-parte/](https://www.lejubila.net/2015/10/impianto-di-irrigazione-con-raspberry-pi-l-elettrovalvola-seconda-parte/)
+* [https://mtlynch.io/greenpithumb/](https://mtlynch.io/greenpithumb/)
+* [https://projects.raspberrypi.org/en/projects/build-your-own-weather-station/3](https://projects.raspberrypi.org/en/projects/build-your-own-weather-station/3)
+* [https://schedule.readthedocs.io/en/stable/examples.html#pass-arguments-to-a-job](https://schedule.readthedocs.io/en/stable/examples.html#pass-arguments-to-a-job)
+* [https://crontab.guru](https://crontab.guru)
+* [https://nazrul.me/2019/07/17/ssh-agent-forward-into-docker-container-on-macos/](https://nazrul.me/2019/07/17/ssh-agent-forward-into-docker-container-on-macos/)
+* [https://pinout.xyz/pinout](https://pinout.xyz/pinout)
 
 
-------------------------------------------
-Python 3 MUST!
-
-
-"Premature Optmization is the roots of all the evil"
-"Done is better than perfect"
-
-
-Flow
--------
-
-title Flow 
-participant Hardware\ndevice as d
-participant App\nsensors as i
-participant App\nctrl as c
-participant App\nservos as o
-participant Hardware\nmotor as m
-
-
-note over i,o
-Common configuration
-- MQTT broker
-- topic pattern
-end note
-
-note over c
-subscribe to "<sector>/sensors/+/+"
-link sensor and servo topics with <threshold>
-end note
-
-loop each X sec
-i->d: query
-d-->i: M
-i->c: mqtt://<sector>/sensors/<type>/<id>: <value>
-end
-note over c
-Apply logic 
-if <value> > <threshold> 
-then <state>
-end note
-note over o
-subscribe to "<sector>/servos/<type>/<id>/set"
-end note
-c->o: mqtt://<sector>/servos/<type>/<id>/set: <state>
-alt switch
-o->m: query
-alt 0
-m-->o: 0
-o->m: set 1
-else 1
-m-->o: 1
-end
-end
-alt square
-o->m: query
-m-->o: <initial_state>
-o->m: <state>
-note over o
-sleep
-end note
-o->m: <initial_state>
-end
-
-alt pulse
-o->m: query
-m-->o: <initial_state>
-loop whished num of pulse
-o->m: <state_a>
-note over o
-sleep
-end note
-o->m: <state_b>
-note over o
-sleep
-end note
-end
-o->m: <initial_state>
-end
-
-
-
-
-
-
-
-
-Software
--------
-sensor and servo -> pollicino.py
-broker 
-
-
-Hardware
--------
-
-
-Next Step Going Big
--------
-Ansible
-Cockpit
-
-https://grafana.com/blog/2021/08/12/streaming-real-time-sensor-data-to-grafana-using-mqtt-and-grafana-live/
-
-
-References
--------
-https://www.ev3dev.org/docs/tutorials/sending-and-receiving-messages-with-mqtt/
-http://www.steves-internet-guide.com/client-connections-python-mqtt/
-https://nodered.org/about/
-http://mqtt-explorer.com/
-https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/
-
-https://www.raspberryitaly.com/pigarden-e-pigardenweb-realizza-il-tuo-impianto-di-irrigazione-con-raspberry-pi/
-
-https://www.youtube.com/watch?v=51dg2MsYHns
-
-https://www.lejubila.net/2015/10/impianto-di-irrigazione-con-raspberry-pi-l-elettrovalvola-seconda-parte/
-
-https://mtlynch.io/greenpithumb/
-
-https://projects.raspberrypi.org/en/projects/build-your-own-weather-station/3
-
-https://schedule.readthedocs.io/en/stable/examples.html#pass-arguments-to-a-job
-
-https://crontab.guru/#0_7_*_2_*
-
-https://nazrul.me/2019/07/17/ssh-agent-forward-into-docker-container-on-macos/
-
-https://pinout.xyz/pinout/pin11_gpio17
-
-
-ansible-playbook setup.yaml -i hosts_emu -v
-
-Ansible
---------
-ssh-copy-id -i .ssh/id_rsa.pub pi@raspberrypi
-ansible -i hosts -m setup -a 'filter=ansible_memtotal_mb' all
-ssh-keygen -t rsa
-install samba
-git clone git@github.com:enzomar/pollicino.git
-sudo apt install python3 idle3
-sudo update-alternatives --install $(which python) python $(readlink -f $(which python3)) 3
-venv
-pip install -r requirements.txt
-install samba -> https://pimylifeup.com/raspberry-pi-samba/
-
-
-
-- enable ssh over internet
-- assign static ip
-- create ssh key pair
-- git clone
+# Next Steps<a name="next"></a>
