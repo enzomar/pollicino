@@ -1,0 +1,25 @@
+--- 
+-  hosts: all 
+   gather_facts: no
+   roles: 
+      - {role: common}
+      
+-  hosts: sensors 
+   gather_facts: no
+   roles: 
+      - {role: sensors}
+
+-  hosts: ctrl 
+   gather_facts: no
+   roles: 
+      - {role: ctrl}
+
+-  hosts: servos 
+   gather_facts: no
+   roles: 
+      - {role: servos}
+
+-  hosts: broker 
+   gather_facts: no
+   roles: 
+      - {role: broker}

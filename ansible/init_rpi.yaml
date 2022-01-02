@@ -1,0 +1,8 @@
+--- 
+-  hosts: all 
+   gather_facts: no
+   become: True
+   tasks:
+     - name: Set hostname to {{ new_hostname }}
+       command: hostname {{ lookup('env', 'new_hostname') }}
+
