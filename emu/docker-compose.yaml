@@ -4,6 +4,7 @@ services:
     build: .
     container_name: "ctrl"
     tty: true
+    hostname: ctrl
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
@@ -11,43 +12,51 @@ services:
     build: .
     container_name: "broker"
     tty: true
+    hostname: broker
+
     volumes:
       - ~/.ssh:/root/.ssh:ro
     ports:
       - 1883:1883
+      - 9001:9001
 
-  sensor_a:
+  sensor-a:
     build: .
     container_name: "sensor-a"
     tty: true
+    hostname: sensor-a
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
 
-  sensor_b:
+  sensor-b:
     build: .
     container_name: "sensor-b"
     tty: true
-    volumes:
+    hostname: sensor-b
+    volumes: 
       - ~/.ssh:/root/.ssh:ro
 
-  sensor_c:
+  sensor-c:
     build: .
     container_name: "sensor-c"
     tty: true
+    hostname: sensor-c
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
-  servo_a:
+  servo-a:
     build: .
     container_name: "servo-a"
     tty: true
+    hostname: servo-a
     volumes:
       - ~/.ssh:/root/.ssh:ro
 
-  servo_b:
+  servo-b:
     build: .
     container_name: "servo-b"
     tty: true
+    hostname: servo-b
     volumes:
       - ~/.ssh:/root/.ssh:ro

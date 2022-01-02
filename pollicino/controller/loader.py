@@ -19,7 +19,7 @@ def load_standard(sector, c_type, links):
         sensor_id = str(each['sensor_id'])
         sensor_type = each['sensor_type']
         threashold = each['threshold']
-        topic_sub = topic.status(sensor_id, sensor_type, 'sensors', sector)
+        topic_sub = topic.status_sub(sensor_id, sensor_type, 'sensors', sector)
         topic_pub = topic.cmd_pub(servo_id, servo_type, 'servos', sector)
         c_instance = c_class(topic_sub, topic_pub, threashold)
         list_of_ctrls.append(c_instance)

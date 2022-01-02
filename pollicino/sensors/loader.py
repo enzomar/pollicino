@@ -28,7 +28,7 @@ def load_sensor(s_id, s_config, sector):
     s_instance = s_class(s_id)
     s_instance.polling_seconds = s_polling_seconds or None
     s_instance.pin_input = s_pin_input
-    s_topic = topic.status(s_instance.id, s_instance.type, 'sensors', sector)
+    s_topic = topic.status_pub(s_instance.id, s_instance.type, 'sensors', sector)
     return s_instance, s_topic
 
 

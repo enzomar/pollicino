@@ -3,4 +3,5 @@ RUN apt-get update
 RUN apt-get install -y git 
 RUN apt-get install -y sudo
 RUN apt-get install -y procps
+RUN apt-get install -y iputils-ping
 ENTRYPOINT ["bash"]

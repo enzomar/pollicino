@@ -15,7 +15,15 @@ ansible_connection=docker
 
 [ctrl]
 ctrl
-broker 
- 
+
+
 [ctrl:vars]
 ansible_connection=docker
+
+[broker]
+broker 
+
+[broker:vars]
+ansible_connection=docker
+
+
