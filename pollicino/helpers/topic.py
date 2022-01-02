@@ -41,4 +41,4 @@ def cmd_sub(dev_id, dev_name, category, sector):
 
 def extract(topic):
     splitted = topic.split('/')
-    return splitted[0], splitted[2], splitted[3], splitted[4]
+    return splitted[0], splitted[1], splitted[2], splitted[3]
