@@ -1,7 +1,7 @@
 from getmac import get_mac_address as gma
 
-PATTERN_STATUS_PUB = '{sector}/{category}/{dev_name}/{mac}/{dev_id}'
-PATTERN_STATUS_SUB = '{sector}/{category}/{dev_name}/+/{dev_id}'
+PATTERN_STATUS_PUB = '{sector}/{category}/{dev_name}/{dev_id}'
+PATTERN_STATUS_SUB = '{sector}/{category}/{dev_name}/{dev_id}'
 PATTERN_CMD_PUB    = '{sector}/{category}/{dev_name}/{dev_id}/set'
 PATTERN_CMD_SUB    = '{sector}/{category}/{dev_name}/{dev_id}/set'
 
@@ -9,7 +9,6 @@ PATTERN_CMD_SUB    = '{sector}/{category}/{dev_name}/{dev_id}/set'
 def status_pub(dev_id, dev_name, category, sector):
     return PATTERN_STATUS_PUB.format(
         sector=sector,
-        mac=gma(),
         category=category,
         dev_name=dev_name,
         dev_id=dev_id)
