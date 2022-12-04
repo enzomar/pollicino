@@ -53,7 +53,7 @@ Ensure you have installed
 On **Terminal 1**
 
 ```bash
-git clone git@github/enzomar/pollicino
+git git@github.com:enzomar/pollicino.git
 cd pollicino/emu
 docker-compose up
 ```
